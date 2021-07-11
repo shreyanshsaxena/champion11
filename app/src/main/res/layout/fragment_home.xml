@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+<LinearLayout
+    android:background="@android:color/transparent"
+    android:padding="32dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="22dp"
+        style="@style/TextSemiBold"
+        android:textColor="@color/black"
+        android:text="Champion 11 winning time slot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextSemiBold"
+android:id="@+id/twentyfourseven"
+        android:textColor="@color/black"
+        android:textSize="22dp"
+        android:text="for 24X7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TextSemiBold"
+        android:textSize="16dp"
+        android:textColor="#A1A1A1"
+        android:text="Booking will close at 10:00 PM to 10:59 AM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<LinearLayout
+    android:layout_marginTop="48dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        style="@style/TextBold"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:text="Current Contest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:src="@drawable/trophy_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"/>
+</LinearLayout>
+
+
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_marginTop="8dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools">
+
+        <com.google.android.material.card.MaterialCardView
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:rippleColor="@color/carbon_grey_100"
+            app:cardPreventCornerOverlap="false"
+            app:cardElevation="6dp"
+            card_view:cardElevation="6dp">
+
+            <LinearLayout
+                android:padding="@dimen/margin_8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:orientation="horizontal">
+<LinearLayout
+    android:layout_weight="0.6"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/playnow"
+            android:textSize="16dp"
+            style="@style/TextBold"
+            android:textColor="@color/colorGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play Now"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/currentSlotTime"
+        android:textSize="16dp"
+        style="@style/TextBold"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:59 PM to 10:50 AM"/>
+</LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/bookCurrentSlot"
+                        style="@style/MaterialButtonStyleGreen"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        app:cornerRadius="32dp"
+                        app:backgroundTint="@color/colorGreen"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Book Now"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            style="@style/TextBold"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:text="Upcoming Contest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/trophy_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+       >
+
+        <com.google.android.material.card.MaterialCardView
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:rippleColor="@color/carbon_grey_100"
+            app:cardPreventCornerOverlap="false"
+            app:cardElevation="6dp"
+            tools:cardElevation="6dp">
+
+            <LinearLayout
+                android:padding="@dimen/margin_8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16dp"
+                        android:textColor="@color/text_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Opening Time"/>
+                    <TextView
+                        android:textSize="16dp"
+                        style="@style/TextBold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10:59 PM to 10:50 AM"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.button.MaterialButton
+                        
+                        style="@style/MaterialButtonStyleGreen"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        android:clickable="true"
+                        android:enabled="true"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Book Now"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:visibility="visible"
+                        app:backgroundTint="@color/disabled_color"
+                        app:cornerRadius="32dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_marginTop="8dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/tools">
+
+        <com.google.android.material.card.MaterialCardView
+            
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:rippleColor="@color/carbon_grey_100"
+            app:cardPreventCornerOverlap="false"
+            app:cardElevation="6dp"
+            card_view:cardElevation="6dp">
+
+            <LinearLayout
+                android:padding="@dimen/margin_8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="16dp"
+                        android:textColor="@color/text_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Opening Time"/>
+                    <TextView
+                        android:textSize="16dp"
+                        style="@style/TextBold"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10:59 PM to 10:50 AM"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.button.MaterialButton
+                        
+                        style="@style/MaterialButtonStyleGreen"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"
+                        app:cornerRadius="32dp"
+                        android:clickable="true"
+                        android:enabled="false"
+                        app:backgroundTint="@color/disabled_color"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="Book Now"
+                        android:textColor="@color/white"
+                        android:textSize="12dp"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</LinearLayout>
+    <LinearLayout
+        android:gravity="end|bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/sector" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,2 @@
+rootProject.name = "Champion11"
+include ':app'

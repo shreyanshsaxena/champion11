@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginStart="-4dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:src="@drawable/backdrop_red"
+                android:contentDescription="backdropRed" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="championlogo"
+                android:padding="16dp"
+                android:src="@drawable/champion_logo" />
+
+            <ImageView
+                android:layout_alignParentEnd="true"
+
+                android:layout_width="150dp"
+                android:layout_marginTop="-4dp"
+
+                android:layout_height="150dp"
+                android:layout_gravity="end"
+                android:contentDescription="ackdropbg"
+                android:src="@drawable/backdrop_bg"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_marginTop="-20dp"
+            android:textSize="20dp"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:textColor="@color/text_dark"
+            android:text="Proceed with your"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="32dp"
+            android:paddingStart="40dp"
+            style="@style/TextBold"
+            android:textColor="@color/text_dark"
+            android:text="Register"
+            android:paddingEnd="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+android:paddingTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+
+            android:orientation="vertical"
+            >
+
+            <carbon.widget.EditText
+                app:carbon_cornerRadius="32dp"
+                app:carbon_elevation="4dp"
+                app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                android:id="@+id/nameuser"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_edit_text"
+                android:drawableEnd="@drawable/ic_user_alt"
+                android:shadowColor="@color/text_box_fill"
+                android:hint="Name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:singleLine="true"
+                android:textColor="@color/text_dark"
+                android:textColorHighlight="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="20dp"
+                tools:ignore="UnusedAttribute" />
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/userId_input_error"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <carbon.widget.EditText
+                app:carbon_cornerRadius="32dp"
+                app:carbon_elevation="4dp"
+                app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                android:id="@+id/mobileuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:paddingStart="32dp"
+                android:shadowColor="@color/text_box_fill"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:paddingEnd="32dp"
+
+                android:background="@drawable/border_edit_text"
+                android:drawableEnd="@drawable/ic_mobile_android"
+                android:hint="Mobile Number"
+                android:singleLine="true"
+                android:textColor="@color/text_dark"
+                android:textColorHighlight="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="20dp"
+                android:maxLength="10"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="UnusedAttribute" />
+
+            <carbon.widget.EditText
+                android:layout_marginBottom="16dp"
+                android:id="@+id/emailuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_edit_text"
+                android:drawableEnd="@drawable/ic_paper_plane"
+                android:hint="Email ID (Optional)"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+
+                android:shadowColor="@color/text_box_fill"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:singleLine="true"
+                android:textColor="@color/text_dark"
+                android:textColorHighlight="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="20dp"
+                app:carbon_cornerRadius="32dp"
+                app:carbon_elevation="4dp"
+                app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                tools:ignore="UnusedAttribute" />
+            <carbon.widget.TextView
+                android:id="@+id/stateUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_edit_text"
+                android:drawableEnd="@drawable/ic_map_marker_alt"
+                android:hint="State"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:shadowColor="@color/text_box_fill"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:singleLine="true"
+                android:textColor="@color/text_dark"
+                android:textColorHighlight="@color/text_color"
+                android:textColorHint="@color/text_color"
+                android:textSize="20dp"
+                app:carbon_cornerRadius="32dp"
+                app:carbon_elevation="4dp"
+                app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                tools:ignore="UnusedAttribute" />
+
+            <RadioGroup
+                android:layout_marginTop="12dp"
+                android:id="@+id/radioGroup1"
+                android:layout_marginStart="-40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radiocar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:button="@null"
+                    android:textSize="18dp"
+                    android:background="@drawable/backradio"
+                    android:checked="true"
+                    android:text="Male"
+                    android:paddingStart="64dp"/>
+
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:checked="false"
+                    android:paddingStart="64dp"
+                    android:textSize="18dp"
+                    android:background="@drawable/backradio"
+                    android:button="@android:color/transparent"
+                    android:text="      Female" />
+
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/register"
+                style="@style/MaterialButtonStyle"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:enabled="true"
+                android:paddingEnd="24dp"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:minWidth="200dp"
+                android:paddingLeft="8dp"
+                android:text="     Register"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                app:cornerRadius="32dp"
+                android:visibility="visible" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_weight="0.75"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:textColor="@color/text_dark"
+                    android:text="Already have an account? "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:text="Login"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="end"
+            android:layout_gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/sector" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.core.widget.NestedScrollView>

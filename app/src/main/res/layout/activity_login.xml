@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginStart="-4dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:src="@drawable/backdrop_red"
+                android:contentDescription="backdropRed" />
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:layout_marginTop="24dp"
+                android:padding="16dp"
+                android:src="@drawable/champion_logo"
+                android:contentDescription="championlogo" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+
+                android:layout_gravity="end"
+                android:layout_marginTop="-4dp"
+                android:layout_marginEnd="-1dp"
+                android:contentDescription="ackdropbg"
+                android:src="@drawable/backdrop_bg" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="20dp"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:textColor="@color/black"
+                android:text="Proceed with your"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textSize="32dp"
+                android:textStyle="bold"
+                style="@style/TextBold"
+                android:paddingStart="40dp"
+                android:textColor="@color/black"
+                android:text="Login"
+                android:paddingEnd="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <carbon.widget.EditText
+                    android:id="@+id/userIDTextInputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/border_edit_text"
+                    android:drawableEnd="@drawable/ic_mobile_android"
+                    android:hint="Enter your mobile number"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color"
+                    android:textColorHighlight="@color/text_color"
+                    android:textColorHint="@color/text_color"
+                    android:textSize="20dp"
+                    app:carbon_cornerRadius="32dp"
+                    app:carbon_elevation="4dp"
+                    app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                    tools:ignore="UnusedAttribute" />
+
+                <TextView
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/userId_input_error"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login"
+                    style="@style/MaterialButtonStyle"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:enabled="true"
+                    android:paddingEnd="24dp"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:minWidth="200dp"
+                    android:paddingLeft="8dp"
+                    android:text="      Get OTP"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    app:cornerRadius="32dp"
+                    android:visibility="visible" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="0.75"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:text="Don't have an account? "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_weight="0.25"
+                        android:id="@+id/signup"
+                        android:textSize="20dp"
+                        android:gravity="start"
+                        android:textColor="@color/colorBlue"
+                        android:text="Signup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/sector" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

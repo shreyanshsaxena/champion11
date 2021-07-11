@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:background="@color/colorPrimary"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="320dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+
+            <LinearLayout
+                android:paddingTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+android:layout_margin="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="8dp"
+
+                        android:src="@drawable/champion_logo" />
+                    <TextView
+                        android:layout_marginStart="@dimen/carbon_grid8"
+                        android:textColor="@color/white"
+                        android:text="Menu"
+                        android:gravity="center"
+                        style="@style/TextBold"
+                        android:textSize="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+                </LinearLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_marginBottom="@dimen/carbon_grid8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/colorcardred"
+                    app:cardCornerRadius="4dp"
+                    app:rippleColor="@color/carbon_grey_100"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardElevation="6dp"
+                    card_view:cardElevation="6dp">
+                <LinearLayout
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="start"
+                        android:paddingBottom="@dimen/carbon_grid8"
+                        android:paddingTop="@dimen/carbon_grid8"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:gravity="start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="Name"
+                            android:layout_weight="1"
+                            style="@style/TextSemiBold"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/userName"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="Karan Singh"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingBottom="@dimen/carbon_grid8"
+                        android:paddingTop="@dimen/carbon_grid8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:gravity="start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="Email"
+                            style="@style/TextSemiBold"
+                            android:layout_weight="1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/userEmail"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="karan12@gmail.com"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingBottom="@dimen/carbon_grid8"
+                        android:paddingTop="@dimen/carbon_grid8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:gravity="start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="Mobile"
+                            style="@style/TextSemiBold"
+                            android:layout_weight="1"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+                        <TextView
+                            android:id="@+id/userMobile"
+                            android:gravity="end"
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="3"
+                            android:text="9013225396"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/white"
+                            android:textSize="18dp" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+
+    </FrameLayout>
+
+
+</LinearLayout>
