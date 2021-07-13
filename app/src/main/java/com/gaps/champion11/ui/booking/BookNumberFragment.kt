@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.gaps.champion11.databinding.FragmentBookingNumberBinding
 import com.gaps.champion11.model.NumberDetail
+import com.gaps.champion11.utils.SharedPrefUtils
 
 class BookNumberFragment : Fragment() {
     private lateinit var bookingViewModel: BookingViewModel
@@ -39,6 +40,8 @@ class BookNumberFragment : Fragment() {
         return root
     }
     fun setupListeners(){
+        binding.luckyNo.text=
+            context?.let { SharedPrefUtils.getString(it,SharedPrefUtils.SELECTED_NO,null) }
 //        disposableBookNow = binding.bookNow.clicks()
 //            .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
 //            .observeOn(AndroidSchedulers.mainThread())

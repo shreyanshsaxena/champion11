@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gaps.champion11.R
 import com.gaps.champion11.databinding.ActivityRegisterBinding
+import com.gaps.champion11.enum.MessageType
 import com.gaps.champion11.model.RegisterUserRequest
 import com.gaps.champion11.model.ResponseDataModel
 import com.gaps.champion11.retrofit.RetrofitApiClient
 import com.gaps.champion11.utils.AppUtil
+import com.gaps.champion11.utils.CommandCallbackWithFailure
 import com.gaps.champion11.utils.CommandCallbackWithValue
 import com.gaps.champion11.utils.HttpCode
 import com.google.android.material.button.MaterialButton
@@ -88,13 +90,30 @@ class RegisterUserActivity : BaseActivity() {
 
             }
     }
+    private fun handleError(){
+        AppUtil.showDialogWithCallback(
+            context = this@RegisterUserActivity,
+            "Sorry!! We are unable to create your account at this moment. Please try again later",
+            null,
+            null,
+            MessageType.ERROR,
+            object : CommandCallbackWithFailure {
+                override fun onSuccess() {
+                    AppUtil.hideAlertDialog()
+                }
+            })
+    }
 
     private fun registerUser() {
+        var genderValue =1
+        if (!binding.male.isChecked){
+            genderValue=2
+        }
         showProgressDialog(this)
         val registerUserRequest = RegisterUserRequest(
             binding.mobileuser.text.toString(),
             binding.nameuser.text.toString(),
-            null, binding.stateUser.toString()
+            null,genderValue, binding.stateUser.toString(),binding.emailuser.text.toString()
         )
         val call = RetrofitApiClient.getApiInterfaceUser(this).registerUser(registerUserRequest)
 
@@ -106,13 +125,29 @@ class RegisterUserActivity : BaseActivity() {
                 hideProgressDialog()
                 if (response.isSuccessful && response.code() == HttpCode.CREATED) {
                     if (response.body() != null) {
-                        startActivity(Intent(this@RegisterUserActivity, LoginActivity::class.java))
+                        AppUtil.showDialogWithCallback(
+                            context = this@RegisterUserActivity,
+                            "You are successfully registered to the Champion11 App",
+                            null,
+                            null,
+                            MessageType.SUCCESS,
+                            object : CommandCallbackWithFailure {
+                                override fun onSuccess() {
+                                    AppUtil.hideAlertDialog()
+                                    startActivity(Intent(this@RegisterUserActivity, LoginActivity::class.java))
+
+                                }
+                            })
                     }
+                }
+                else{
+                    handleError()
                 }
             }
 
             override fun onFailure(call: Call<ResponseDataModel?>, t: Throwable) {
                 hideProgressDialog()
+                handleError()
             }
         })
     }

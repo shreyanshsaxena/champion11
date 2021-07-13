@@ -81,11 +81,11 @@ android:layout_margin="16dp"
                         android:orientation="horizontal">
                         <TextView
                             android:gravity="start"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="3"
                             android:text="Name"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             style="@style/TextSemiBold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
@@ -94,13 +94,13 @@ android:layout_margin="16dp"
                             android:id="@+id/userName"
                             android:gravity="end"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="3"
-                            android:text="Karan Singh"
+                            android:maxLines="1"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -114,12 +114,12 @@ android:layout_margin="16dp"
                         android:orientation="horizontal">
                         <TextView
                             android:gravity="start"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="3"
                             android:text="Email"
                             style="@style/TextSemiBold"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
                             android:textSize="18dp" />
@@ -127,13 +127,13 @@ android:layout_margin="16dp"
                             android:id="@+id/userEmail"
                             android:gravity="end"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="3"
-                            android:text="karan12@gmail.com"
+                            android:maxLines="1"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>
@@ -147,12 +147,12 @@ android:layout_margin="16dp"
                         android:orientation="horizontal">
                         <TextView
                             android:gravity="start"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="3"
                             android:text="Mobile"
                             style="@style/TextSemiBold"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
                             android:textSize="18dp" />
@@ -160,13 +160,13 @@ android:layout_margin="16dp"
                             android:id="@+id/userMobile"
                             android:gravity="end"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="3"
-                            android:text="9013225396"
+                            android:text=""
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/white"
-                            android:textSize="18dp" />
+                            android:textSize="16dp" />
 
 
                     </LinearLayout>

@@ -193,7 +193,7 @@ android:paddingTop="8dp"
                 >
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/radiocar"
+                    android:id="@+id/male"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
@@ -205,7 +205,7 @@ android:paddingTop="8dp"
                     android:paddingStart="64dp"/>
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/female"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"

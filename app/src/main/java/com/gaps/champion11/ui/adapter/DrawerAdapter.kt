@@ -61,7 +61,8 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             "Log Out" -> {
                 SharedPrefUtils.clearAll(context)
                 intent = Intent(context, LoginActivity::class.java)
-//                intent!!.putExtra(StringConstants.FRAGMENT_TYPE, "onboard")
+                intent!!.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
             }
         }
         if (intent != null) context.startActivity(intent)

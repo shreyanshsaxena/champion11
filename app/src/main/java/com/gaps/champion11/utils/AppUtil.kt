@@ -128,11 +128,13 @@ class AppUtil {
                 }
                 MessageType.ERROR -> {
                     messageType.text = context.getResources().getString(R.string.error)
+                    messageType.setTextColor(getColor(context,R.color.colorPrimary))
                     msg_txt_icon.setImageDrawable(context.getDrawable(R.drawable.ic_error_svg))
                     buttonCancel.visibility = View.GONE
                 }
                 MessageType.SUCCESS -> {
                     messageType.text = context.getResources().getString(R.string.success)
+                    messageType.setTextColor(getColor(context,R.color.colorGreen))
                     msg_txt_icon.setImageDrawable(context.getDrawable(R.drawable.ic_success))
                     buttonCancel.visibility = View.GONE
                 }

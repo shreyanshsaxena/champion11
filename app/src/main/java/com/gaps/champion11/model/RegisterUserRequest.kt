@@ -10,8 +10,13 @@ data class RegisterUserRequest(
     val fullName: String = "",
     @SerializedName("Password")
     val password: String? = "",
+    @SerializedName("Gender")
+    val gender: Int =1,
     @SerializedName("State")
-    val state: String =""
+    val state: String ="",
+    @SerializedName("Email")
+    val email: String =""
+
 
 )
 

@@ -71,6 +71,7 @@ private fun handleError(){
                     val intent = Intent(this@LoginActivity, OTPActivity::class.java)
                     intent.putExtra("mobile", binding.userIDTextInputEditText.text.toString())
                     startActivity(intent)
+                    finish()
                 } else {
                     handleError()
                 }

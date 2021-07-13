@@ -48,11 +48,13 @@ class OTPActivity : BaseActivity() {
                 call: Call<UserDetails?>,
                 response: Response<UserDetails?>
             ) {
+                hideProgressDialog()
                 if (response.isSuccessful && response.code() == HttpCode.OK) {
                     val userDetails=response.body()
                     val userDetailString=Gson().toJson(userDetails,UserDetails::class.java)
                     SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.USER_DETAILS,userDetailString)
                     startActivity(Intent(this@OTPActivity, HomeScreenActivity::class.java))
+                    finish()
 
                 } else {
                     hideProgressDialog()

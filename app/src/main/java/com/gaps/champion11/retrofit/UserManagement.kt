@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface UserManagement {
-    @POST("/user-management/v1/login")
+    @POST("/api/user/register")
     fun registerUser(@Body req: RegisterUserRequest?): Call<ResponseDataModel?>?
     @POST("/api/user/verifyotp")
     fun verifyOTP(@Body req: VerifyOTPRequest?): Call<TokenResponseModel?>?
