@@ -32,7 +32,7 @@ android:id="@+id/twentyfourseven"
         style="@style/TextSemiBold"
         android:textSize="16dp"
         android:textColor="#A1A1A1"
-        android:text="Booking will close at 10:00 PM to 10:59 AM"
+        android:text="Note - First game slot booking starts at 10:00 PM and ends at 10:59 AM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 <LinearLayout

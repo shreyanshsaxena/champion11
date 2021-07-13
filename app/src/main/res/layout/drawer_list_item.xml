@@ -38,7 +38,7 @@
                 android:textSize="15dp"
                 android:textColor="@color/white" />
             <ImageView
-                android:src="@drawable/ic_arrow_right"
+                android:src="@drawable/ic_angle_right"
                 android:layout_width="25dp"
                 android:layout_height="25dp"/>
 

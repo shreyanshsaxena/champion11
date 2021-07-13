@@ -26,10 +26,14 @@ class SplashScreenActivity:AppCompatActivity() {
             override fun onFinish() {
                 if(SharedPrefUtils.getString(context = this@SplashScreenActivity,SharedPrefUtils.KEY_TOKEN,null)!=null){
                     startActivity(Intent(this@SplashScreenActivity, HomeScreenActivity::class.java))
+                    finish()
 
                 }
-                else
+                else{
                     startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+                    finish()
+                }
+
             }
         }
         timer.start()

@@ -28,7 +28,7 @@ import java.util.*
 open class BaseNavigationActivity : BaseActivity(),
     NavigationView.OnNavigationItemSelectedListener {
     public lateinit var context: Context;
-    private val drawer: DrawerLayout by lazy { findViewById(R.id.drawer_layout) }
+    internal val drawer: DrawerLayout by lazy { findViewById(R.id.drawer_layout) }
 
     fun init(context: Context, toolbar: Toolbar, @DrawableRes drawIcon: Int) {
         this.context = context
@@ -68,7 +68,7 @@ open class BaseNavigationActivity : BaseActivity(),
 
         val userDetails = SharedPrefUtils.getString(context, SharedPrefUtils.USER_DETAILS, null)
         val userDetailsObject = Gson().fromJson(userDetails, UserDetails::class.java)
-        headerName.text = userDetailsObject.username
+        headerName.text = userDetailsObject.fullname
         headerEmail.text=userDetailsObject.email
         headerMobile.text=userDetailsObject.phonenumber
 
@@ -76,17 +76,17 @@ open class BaseNavigationActivity : BaseActivity(),
         val drawerRecyclerView: RecyclerView = navigationView.findViewById(R.id.drawer_list)
         drawerRecyclerView.layoutManager = LinearLayoutManager(applicationContext)
         val drawerListItems: MutableList<DrawerListItem> = ArrayList<DrawerListItem>()
-        val drawerListItem = DrawerListItem("Bank Account", R.drawable.ic_home_black_24dp, true)
+        val drawerListItem = DrawerListItem("Bank Account", R.drawable.ic_hotel, true)
 
         drawerListItems.add(drawerListItem)
-        val drawerListItem1 = DrawerListItem("About us", R.drawable.ic_home_black_24dp, true)
+        val drawerListItem1 = DrawerListItem("About us", R.drawable.ic_user_alt, true)
         drawerListItems.add(drawerListItem1)
-        val drawerListItem2 = DrawerListItem("Privacy Policy", R.drawable.ic_home_black_24dp, true)
+        val drawerListItem2 = DrawerListItem("Privacy Policy", R.drawable.ic_edit, true)
         drawerListItems.add(drawerListItem2)
         val drawerListItem3 =
-            DrawerListItem("Terms and Condition", R.drawable.ic_home_black_24dp, true)
+            DrawerListItem("Terms and Condition", R.drawable.ic_passport, true)
         drawerListItems.add(drawerListItem3)
-        val drawerListItem4 = DrawerListItem("Log Out", R.drawable.ic_home_black_24dp, true)
+        val drawerListItem4 = DrawerListItem("Log Out", R.drawable.ic_logouticon, true)
         drawerListItems.add(drawerListItem4)
         val drawerAdapter = DrawerAdapter(context, drawerListItems, drawerLayout = drawer)
         drawerRecyclerView.adapter = drawerAdapter;
