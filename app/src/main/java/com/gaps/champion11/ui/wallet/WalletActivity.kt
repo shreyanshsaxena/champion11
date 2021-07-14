@@ -1,6 +1,7 @@
 package com.gaps.champion11.ui.wallet
 
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
 import com.gaps.champion11.R
 import com.gaps.champion11.databinding.ActivityWalletBinding
 import com.gaps.champion11.ui.BaseNavigationActivity
@@ -15,21 +16,16 @@ class WalletActivity : BaseNavigationActivity(){
 
     private var disposableLogin: Disposable?=null
     private lateinit var binding: ActivityWalletBinding
-    private val createProfileBtn: MaterialButton by lazy { findViewById(R.id.createProfile) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWalletBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val toolbar: Toolbar = binding.toolbar
+
+        init(this, toolbar,R.drawable.ic_hamburger_white)
         setupListeners()
     }
-    private fun setupListeners(){
-        disposableLogin = createProfileBtn.clicks()
-            .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-//                startActivity(Intent(this@ProfileActivity, HomeScreenActivity::class.java))
-
-            }
+    private fun setupListeners() {
     }
 }

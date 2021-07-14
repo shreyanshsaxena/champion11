@@ -50,7 +50,7 @@ class NumberListAdapter(private val numberList: List<NumberDetail>, val context:
                     SharedPrefUtils.setString(
                         context,
                         SharedPrefUtils.SELECTED_NO,
-                        i.number.toString()
+                        i.number
                     )
             }
             notifyDataSetChanged()

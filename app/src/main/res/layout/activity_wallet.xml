@@ -6,13 +6,8 @@
     android:background="@color/white"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true">
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:menu="@menu/activity_nav_drawer_drawer" />
+    <include layout="@layout/navigation_drawer_layout"/>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -62,48 +57,46 @@
                             android:layout_alignParentEnd="true"
                             android:layout_gravity="bottom|end"
                             android:src="@drawable/goldcoins" />
-                <LinearLayout
-                 android:layout_marginTop="80dp"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                 android:orientation="vertical">
-                <TextView
-        android:layout_marginStart="32dp"
-        android:layout_above="@id/championHeaderTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="start"
-        style="@style/TextSemiBold"
-        android:text="Add Money to"
-        android:textColor="#FBBBAB"
-        android:textSize="18dp" />
-                <TextView
-        android:layout_marginStart="32dp"
-        android:id="@+id/championHeaderTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:gravity="start"
-        style="@style/TextSemiBold"
-        android:layout_alignParentTop="true"
-        android:text="Champion 11 Wallet"
-        android:textColor="@android:color/white"
-        android:textSize="24dp" />
-                <TextView
-        android:layout_marginStart="32dp"
-        android:layout_below="@id/championHeaderTxt"
-        android:id="@+id/currentBalance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:gravity="start"
-        style="@style/TextSemiBold"
-        android:text="Current Balance : Rs 60000"
-        android:textColor="#FBBBAB"
-        android:textSize="18dp" />
+                        <LinearLayout android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="80dp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_marginStart="32dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                style="@style/TextSemiBold"
+                                android:text="Wallet Balance "
+                                android:textColor="#FBBBAB"
+                                android:textSize="18dp" />
+                            <TextView
+                                android:layout_marginStart="32dp"
+                                android:id="@+id/championHeaderTxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:gravity="start"
+                                style="@style/TextSemiBold"
+                                android:layout_alignParentTop="true"
+                                android:text="49000 INR"
+                                android:textColor="@android:color/white"
+                                android:textSize="24dp" />
 
-                </LinearLayout>
+                            <TextView
+                                android:layout_marginStart="32dp"
+                                android:layout_below="@id/championHeaderTxt"
+                                android:id="@+id/designationCompany"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="start"
+                                style="@style/TextSemiBold"
+                                android:text="Available to Spend"
+                                android:textColor="#FBBBAB"
+                                android:textSize="18dp" />
+                        </LinearLayout>
 
 
                     </RelativeLayout>
@@ -164,7 +157,131 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:card_view="http://schemas.android.com/tools"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@android:color/transparent"
+                    android:orientation="vertical"
+                    xmlns:android="http://schemas.android.com/apk/res/android">
 
+                    <com.google.android.material.card.MaterialCardView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:rippleColor="@color/carbon_grey_100"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardElevation="6dp"
+                        card_view:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:padding="@dimen/margin_8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_8dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:id="@+id/playnow"
+                                        android:textSize="16dp"
+                                        style="@style/TextBold"
+                                        android:textColor="@color/black"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Disclaimer"/>
+
+                                </RelativeLayout>
+
+                                <TextView
+                                    android:textSize="14dp"
+                                    style="@style/TextBold"
+                                    android:textColor="@color/text_color"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1. For withdrawals greater than 10000 INR, you need to provide your PAN card details"/>
+                                <TextView
+                                    android:layout_marginTop="@dimen/margin_8dp"
+                                    android:textSize="14dp"
+                                    style="@style/TextBold"
+                                    android:textColor="@color/text_color"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2. You can send only 1 withdrawal request in 24 hours"/>
+                                <ImageView
+                                    android:padding="64dp"
+                                    android:layout_gravity="center"
+                                    android:layout_width="220dp"
+                                    android:layout_height="220dp"
+                                    app:tint="@color/text_color"
+                                    android:src="@drawable/ic_money_bill_alt"/>
+                                <LinearLayout
+                                    android:padding="@dimen/carbon_grid8"
+                                    android:gravity="center"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <com.google.android.material.button.MaterialButton
+                                        android:layout_weight="1"
+                                        style="@style/MaterialButtonStyleGreen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center"
+                                        app:cornerRadius="32dp"
+                                        android:drawableEnd="@drawable/ic_arrow_right"
+                                        app:backgroundTint="@color/colorGreen"
+                                        android:clickable="true"
+                                        android:gravity="center"
+                                        android:padding="10dp"
+                                        android:layout_marginEnd="@dimen/margin_8dp"
+
+                                        android:text="Deposit"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp"
+                                        android:visibility="visible" />
+                                    <com.google.android.material.button.MaterialButton
+                                        style="@style/MaterialButtonStyleGreen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center"
+                                        app:cornerRadius="32dp"
+                                        android:layout_weight="1"
+                                        android:layout_marginStart="@dimen/margin_8dp"
+                                        android:drawableEnd="@drawable/ic_arrow_right"
+                                        app:backgroundTint="@color/colorGreen"
+                                        android:clickable="true"
+                                        android:gravity="center"
+                                        android:padding="10dp"
+                                        android:text="Withdraw"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp"
+                                        android:visibility="visible" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+
+                </LinearLayout>
             </FrameLayout>
 
 

@@ -18,8 +18,8 @@
         <ImageView
             android:src="@drawable/ic_home_black_24dp"
             android:id="@+id/drawerItemImg"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             app:tint="@color/white" />
 
         <LinearLayout

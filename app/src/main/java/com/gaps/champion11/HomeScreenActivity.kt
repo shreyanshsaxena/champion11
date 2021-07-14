@@ -12,7 +12,12 @@ import com.gaps.champion11.databinding.ActivityHomescreenBinding
 import com.gaps.champion11.ui.BaseNavigationActivity
 import com.gaps.champion11.ui.BookingNumberActivity
 import com.gaps.champion11.ui.home.HomeFragment
+import com.gaps.champion11.ui.wallet.WalletActivity
+import com.jakewharton.rxbinding4.view.clicks
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class HomeScreenActivity : BaseNavigationActivity() {
 
@@ -27,6 +32,7 @@ class HomeScreenActivity : BaseNavigationActivity() {
         val toolbar: Toolbar = binding.toolbar
 
         init(this, toolbar,R.drawable.ic_hamburger)
+        setupClickListeners()
         if (savedInstanceState == null) { // initial transaction should be wrapped like this
             supportFragmentManager.beginTransaction()
                 .replace(R.id.frame_container, HomeFragment.newInstance())
@@ -35,7 +41,18 @@ class HomeScreenActivity : BaseNavigationActivity() {
 
         }
     }
-     fun callBookingActivity(){
+
+    private fun setupClickListeners() {
+        binding.wallet.clicks()
+            .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                startActivity(Intent(this@HomeScreenActivity, WalletActivity::class.java))
+
+            }
+    }
+
+    fun callBookingActivity(){
         startActivity(Intent(this@HomeScreenActivity, BookingNumberActivity::class.java))
 
     }
