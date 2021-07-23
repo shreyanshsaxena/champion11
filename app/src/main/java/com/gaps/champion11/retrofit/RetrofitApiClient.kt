@@ -23,15 +23,22 @@ object RetrofitApiClient {
         .baseUrl("https://champion11.azurewebsites.net")
         .addConverterFactory(ToStringConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
+
     private var updateUIHandler: Handler? = null
 
 
     fun getApiInterfaceUser(ctx: Context): UserManagement {
         return getRetrofitInstance(ctx).create(UserManagement::class.java)
     }
+    fun getApiInterfaceGames(ctx: Context?): GamesManagement {
+        return getRetrofitInstance(ctx).create(GamesManagement::class.java)
+    }
+    fun getApiInterfaceTransactions(ctx: Context): TransactionManagement {
+        return getRetrofitInstance(ctx).create(TransactionManagement::class.java)
+    }
 
 
-    private fun getRetrofitInstance(ctx: Context): Retrofit {
+    private fun getRetrofitInstance(ctx: Context?): Retrofit {
         if (updateUIHandler == null) {
             updateUIHandler = Handler(Looper.getMainLooper())
         }
@@ -44,7 +51,7 @@ object RetrofitApiClient {
             val requestBuilder: Request.Builder = original.newBuilder()
                 .addHeader(Keys.ACCEPT, "application/json")
                 .addHeader(Keys.CONTENT_TYPE, "application/json")
-                .header(Keys.AUTHORIZATION, token)
+                .header(Keys.AUTHORIZATION, "Bearer $token")
                 .method(original.method(), original.body())
             val request: Request = requestBuilder.build()
             val response: Response = chain.proceed(request)

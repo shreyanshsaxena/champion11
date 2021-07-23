@@ -18,7 +18,7 @@ class SharedPrefUtils{
             )
 
 
-        fun getString(context: Context, key: String?, defaultValue: String?): String? {
+        fun getString(context: Context?, key: String?, defaultValue: String?): String? {
             return preferences.getString(key, defaultValue)
         }
 

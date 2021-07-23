@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
@@ -23,6 +24,11 @@ import com.gaps.champion11.R
 import com.gaps.champion11.enum.MessageType
 import com.gaps.champion11.ui.adapter.SpinnerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import org.joda.time.DateTime
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class AppUtil {
 
@@ -53,7 +59,17 @@ class AppUtil {
             }
             textview.text = builder
         }
-
+        fun getDateTimeFromString(s: String?): String {
+            val pattern = "yyyy-MM-dd'T'HH:mm:ss"
+            val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
+            var d: Date? = null
+            try {
+                d = simpleDateFormat.parse(s)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return DateTime(d).toString("hh:mm a")
+        }
         fun showBottomSheetDialog(
             context: Context,
             locationList: List<String>,
@@ -177,11 +193,24 @@ class AppUtil {
                 commandCallback.onFailure()
             }
             showAlertDialog()
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(alertDialog!!.window!!.attributes)
+            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+            alertDialog!!.window!!.attributes = layoutParams
         }
         fun hideAlertDialog() {
             if (alertDialog != null && alertDialog!!.isShowing) {
                 alertDialog!!.dismiss()
             }
+        }
+        fun getDeviceMetrics(context: Context): DisplayMetrics {
+            val metrics = DisplayMetrics()
+            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+            val display = wm.defaultDisplay
+            display.getMetrics(metrics)
+            return metrics
         }
         private fun showAlertDialog() {
             if (alertDialog != null && !alertDialog!!.isShowing) {
