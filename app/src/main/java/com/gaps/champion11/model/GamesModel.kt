@@ -12,6 +12,9 @@ data class GamesModel (
     @SerializedName("priceAmount")
     val priceAmount:Float,
     @SerializedName("isCurrentGame")
-    val isCurrentGame:Boolean
+    val isCurrentGame:Boolean,
+    @SerializedName("isFutureGame")
+    val isFutureGame:Boolean
+
 
 )

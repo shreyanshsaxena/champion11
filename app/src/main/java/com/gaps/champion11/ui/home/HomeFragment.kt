@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
     private var disposableLogin: Disposable? = null
     private var responseDataModel: List<GamesModel>? = null
     private var gameList: MutableList<GamesModel> = ArrayList()
-    var upcomingGameAdapter:GameListAdapter?=null
+    var upcomingGameAdapter: GameListAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -79,27 +79,27 @@ class HomeFragment : Fragment() {
                 ) {
                     (activity as HomeScreenActivity).hideProgressDialog()
                     if (response.isSuccessful && response.code() == HttpCode.OK) {
-                        responseDataModel = response.body()
-                        if (responseDataModel?.get(0)?.isCurrentGame == true) {
-                            binding.noCurrentSlot.visibility = View.GONE
-                            binding.currentSlotLayout.visibility = View.VISIBLE
-                            homeViewModel._text.value = AppUtil.getDateTimeFromString(
-                                responseDataModel?.get(
-                                    0
-                                )?.startTime
-                            ).uppercase() + " to " + AppUtil.getDateTimeFromString(
-                                responseDataModel?.get(0)?.endTime
-                            ).uppercase()
-                        } else {
-                            binding.noCurrentSlot.visibility = View.VISIBLE
-                            binding.currentSlotLayout.visibility = View.GONE
-                        }
-                        for( i in response.body()){
-                            if(!i.isCurrentGame){
-                               gameList.add(i)
+                        binding.noCurrentSlot.visibility = View.VISIBLE
+                        binding.currentSlotLayout.visibility = View.GONE
+                        responseDataModel = response.body().sortedBy { it.startTime }
+                        if(responseDataModel != null && responseDataModel!!.isNotEmpty()){
+                            for (i in responseDataModel!!) {
+                                if (!i.isCurrentGame) {
+                                    gameList.add(i)
+                                }
+                                else{
+                                    binding.noCurrentSlot.visibility = View.GONE
+                                    binding.currentSlotLayout.visibility = View.VISIBLE
+                                    homeViewModel._text.value = AppUtil.getDateTimeFromString(
+                                        i.startTime
+                                    ).uppercase() + " to " + AppUtil.getDateTimeFromString(
+                                        i.endTime
+                                    ).uppercase()
+                                }
                             }
+                            upcomingGameAdapter?.notifyDataSetChanged()
                         }
-                        upcomingGameAdapter?.notifyDataSetChanged()
+
 
                     } else {
                         handleError()

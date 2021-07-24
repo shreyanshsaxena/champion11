@@ -30,6 +30,9 @@ object RetrofitApiClient {
     fun getApiInterfaceUser(ctx: Context): UserManagement {
         return getRetrofitInstance(ctx).create(UserManagement::class.java)
     }
+    fun getApiInterfaceTransaction(ctx: Context): TransactionManagement {
+        return getRetrofitInstance(ctx).create(TransactionManagement::class.java)
+    }
     fun getApiInterfaceGames(ctx: Context?): GamesManagement {
         return getRetrofitInstance(ctx).create(GamesManagement::class.java)
     }

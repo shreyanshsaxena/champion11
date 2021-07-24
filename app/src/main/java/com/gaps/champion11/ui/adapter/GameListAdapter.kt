@@ -1,5 +1,6 @@
 package com.gaps.champion11.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gaps.champion11.R
 import com.gaps.champion11.model.GamesModel
+import com.gaps.champion11.utils.AppUtil
 
 class GameListAdapter (
     private val context: Context, list: List<GamesModel>) :
@@ -18,6 +20,9 @@ class GameListAdapter (
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             val drawerItemTxt: TextView = itemView.findViewById(R.id.gameSlot)
+            val bookNowUpcomingTxt: TextView = itemView.findViewById(R.id.bookNowUpcoming)
+
+
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,9 +31,12 @@ class GameListAdapter (
             return ViewHolder(itemView)
         }
 
+        @SuppressLint("SetTextI18n")
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val gameDataItem: GamesModel = gameList[holder.adapterPosition]
-            holder.drawerItemTxt.setText(gameDataItem.startTime)
+            holder.drawerItemTxt.text = AppUtil.getDateTimeFromString(gameDataItem.startTime).uppercase() + " to " + AppUtil.getDateTimeFromString(gameDataItem.endTime).uppercase()
+
+            holder.bookNowUpcomingTxt.isEnabled = gameDataItem.isFutureGame
             holder.itemView.setOnClickListener {
 //                openRelevantFragment(drawerListItem)
 
