@@ -14,7 +14,10 @@ data class GamesModel (
     @SerializedName("isCurrentGame")
     val isCurrentGame:Boolean,
     @SerializedName("isFutureGame")
-    val isFutureGame:Boolean
+    val isFutureGame:Boolean,
+    @SerializedName("pattiResult")
+    val pattiResult:String
+
 
 
 )
