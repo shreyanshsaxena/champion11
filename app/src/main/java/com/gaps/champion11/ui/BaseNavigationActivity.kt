@@ -79,12 +79,12 @@ open class BaseNavigationActivity : BaseActivity(),
         val drawerListItem = DrawerListItem("Bank Account", R.drawable.ic_hotel, true)
 
         drawerListItems.add(drawerListItem)
-        val drawerListItem1 = DrawerListItem("About us", R.drawable.ic_user_alt, true)
+        val drawerListItem1 = DrawerListItem("About Us", R.drawable.ic_user_alt, true)
         drawerListItems.add(drawerListItem1)
         val drawerListItem2 = DrawerListItem("Privacy Policy", R.drawable.ic_edit, true)
         drawerListItems.add(drawerListItem2)
         val drawerListItem3 =
-            DrawerListItem("Terms and Condition", R.drawable.ic_passport, true)
+            DrawerListItem("Terms and Conditions", R.drawable.ic_passport, true)
         drawerListItems.add(drawerListItem3)
         val drawerListItem4 = DrawerListItem("Log Out", R.drawable.ic_logouticon, true)
         drawerListItems.add(drawerListItem4)

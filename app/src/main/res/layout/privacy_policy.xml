@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/TextBold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:text="Privacy Policy"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/TextBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="Introduction"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:textSize="15dp"
+
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="@string/privacy_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            style="@style/TextBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="The information collected:"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+        <TextView
+            android:textSize="15dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="@string/privacy_txt_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

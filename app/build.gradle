@@ -6,6 +6,13 @@ plugins {
 android {
     compileSdkVersion 30
 
+    buildFeatures {
+
+        dataBinding = true
+
+        // for view binding:
+        // viewBinding = true
+    }
     defaultConfig {
         applicationId "com.gaps.champion11"
         minSdkVersion 21

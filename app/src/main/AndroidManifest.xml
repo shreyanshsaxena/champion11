@@ -32,6 +32,10 @@
             android:theme="@style/Theme.Champion11.NoActionBar"/>
         <activity android:name=".ui.OTPActivity" />
         <activity android:name=".ui.wallet.WalletActivity" />
+        <activity android:name=".ui.PolicyActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>

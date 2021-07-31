@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:orientation="vertical"
+    android:layout_marginTop="@dimen/margin_8dp"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <TextView
+           style="@style/TextBold"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:text="Terms and Conditions"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="15dp"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="@string/tncTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>

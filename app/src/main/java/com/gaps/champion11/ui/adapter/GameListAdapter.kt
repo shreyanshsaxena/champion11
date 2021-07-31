@@ -8,9 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.gaps.champion11.HomeScreenActivity
 import com.gaps.champion11.R
 import com.gaps.champion11.model.GamesModel
+import com.gaps.champion11.ui.BookingNumberActivity
 import com.gaps.champion11.utils.AppUtil
+import com.google.android.material.button.MaterialButton
 
 class GameListAdapter (
     private val context: Context, list: List<GamesModel>) :
@@ -20,7 +23,7 @@ class GameListAdapter (
 
         class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
             val drawerItemTxt: TextView = itemView.findViewById(R.id.gameSlot)
-            val bookNowUpcomingTxt: TextView = itemView.findViewById(R.id.bookNowUpcoming)
+            val bookNowUpcomingTxt: MaterialButton = itemView.findViewById(R.id.bookNowUpcoming)
 
 
         }
@@ -37,8 +40,9 @@ class GameListAdapter (
             holder.drawerItemTxt.text = AppUtil.getDateTimeFromString(gameDataItem.startTime).uppercase() + " to " + AppUtil.getDateTimeFromString(gameDataItem.endTime).uppercase()
 
             holder.bookNowUpcomingTxt.isEnabled = gameDataItem.isFutureGame
-            holder.itemView.setOnClickListener {
-//                openRelevantFragment(drawerListItem)
+            holder.bookNowUpcomingTxt.setOnClickListener {
+                intent = Intent(context, BookingNumberActivity::class.java)
+
 
             }
         }
