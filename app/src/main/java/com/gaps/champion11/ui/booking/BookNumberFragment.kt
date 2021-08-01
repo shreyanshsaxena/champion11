@@ -90,28 +90,15 @@ class BookNumberFragment : Fragment() {
                 response: Response<ResponseBody?>?
             ) {
                 if (response != null && response.isSuccessful) {
-                    context?.let {
-                        AppUtil.showDialogWithCallback(
-                            it,
-                            "Congratulations!! You have successfully placed a bet of Rs "+ optionBet.amount+" on number "+context?.let { SharedPrefUtils.getString(it, SharedPrefUtils.SELECTED_NO, null) },
-                            null,
-                            null,
-                            MessageType.SUCCESS,
-                            object : CommandCallbackWithFailure {
-                                override fun onSuccess() {
-                                    AppUtil.hideAlertDialog()
-                                }
-                            })
-                    }
-                }
-                else{
-
+                    handleBetSuccess(optionBet)
+                } else {
+                    handleBetError()
                 }
 
             }
 
             override fun onFailure(call: Call<ResponseBody?>?, t: Throwable?) {
-
+                handleBetError()
             }
 
         }
@@ -137,8 +124,7 @@ class BookNumberFragment : Fragment() {
                             )
                         }
                     }
-                }
-                else{
+                } else {
                     handleBetError()
                 }
             }
@@ -150,8 +136,29 @@ class BookNumberFragment : Fragment() {
         })
     }
 
+    fun handleBetSuccess(optionBet: OptionBet) {
+        context?.let {
+            AppUtil.showDialogWithCallback(
+                it,
+                "Congratulations!! You have successfully placed a bet of Rs " + optionBet.amount + " on number " + context?.let {
+                    SharedPrefUtils.getString(
+                        it,
+                        SharedPrefUtils.SELECTED_NO,
+                        null
+                    )
+                },
+                null,
+                null,
+                MessageType.SUCCESS,
+                object : CommandCallbackWithFailure {
+                    override fun onSuccess() {
+                        AppUtil.hideAlertDialog()
+                    }
+                })
+        }
+    }
 
-    fun handleBetError(){
+    fun handleBetError() {
         context?.let {
             AppUtil.showDialogWithCallback(
                 it,
@@ -166,6 +173,7 @@ class BookNumberFragment : Fragment() {
                 })
         }
     }
+
     fun setupListeners() {
         binding.luckyNo.text =
             context?.let { SharedPrefUtils.getString(it, SharedPrefUtils.SELECTED_NO, null) }

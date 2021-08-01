@@ -15,4 +15,9 @@ interface UserManagement {
     fun sendOTP(@Body req: GetOTPRequest?): Call<ResponseBody?>?
     @GET("/api/user/getuser")
     fun getUserDetails(@Query("username") username:String?): Call<UserDetails?>?
+    @GET("/api/bankdetails")
+    fun saveUserBankDetails(@Query("username") username:String?): Call<UserDetails?>?
+
+
+
 }

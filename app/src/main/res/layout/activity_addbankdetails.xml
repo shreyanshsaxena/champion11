@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="end">
+
+    <include layout="@layout/navigation_drawer_layout"/>
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        app:elevation="0dp"
+
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_alignParentEnd="true"
+
+                android:layout_width="200dp"
+                android:layout_marginTop="-4dp"
+                android:src="@drawable/backdrop_bg"
+                android:layout_height="200dp"
+                android:layout_gravity="end"
+                android:contentDescription="ackdropbg"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/transparent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize">
+
+                <ImageView
+                    android:id="@+id/app_logo"
+                    android:layout_width="45dp"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="start|center"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    android:src="@drawable/champion_logo" />
+                <ImageView
+                    android:layout_marginEnd="16dp"
+                    android:id="@+id/wallet"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:visibility="visible"
+                    app:tint="@color/black"
+                    android:src="@drawable/ic_wallet" />
+                <ImageView
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/profile"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    app:tint="@color/black"
+                    android:visibility="visible"
+                    android:src="@drawable/ic_user_alt" />
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </FrameLayout>
+
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:id="@+id/coordinator"
+        android:background="@android:color/transparent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginStart="-4dp"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
+                android:src="@drawable/backdrop_red"
+                android:contentDescription="backdropRed" />
+
+
+        </RelativeLayout>
+        <RelativeLayout
+
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            >
+
+            <FrameLayout
+                android:id="@+id/frame_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:id="@+id/frame_container_bankdetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/transparent"
+                        android:orientation="vertical">
+
+                            <LinearLayout
+                                android:padding="@dimen/margin_8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/margin_8dp"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/playnow"
+                                            style="@style/TextBold"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Payment Details"
+                                            android:textColor="@color/black"
+                                            android:textSize="20dp" />
+
+                                    </RelativeLayout>
+
+                                    <TextView
+                                        android:id="@+id/currentSlotTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/margin_8dp"
+                                        android:text="The below bank details will be used to transfer your wallet/winning amount from your Champion 11 wallet to your account"
+                                        android:textColor="@color/black"
+                                        android:textSize="14dp" />
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:textSize="14dp"
+                                            style="@style/TextBold"
+                                            android:textColor="@color/colorGreen"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="Bank Details for IMPS Payments"/>
+
+                                    </RelativeLayout>
+
+                                    <carbon.widget.EditText
+                                        android:layout_marginTop="16dp"
+                                        android:id="@+id/edtAccountHolderName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/border_edit_text"
+                                        android:drawableEnd="@drawable/ic_user_alt"
+                                        android:hint="Account Holder Name"
+                                        android:importantForAutofill="no"
+                                        android:inputType="text"
+                                        android:paddingStart="32dp"
+                                        android:paddingEnd="32dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/text_color"
+                                        android:textColorHighlight="@color/text_color"
+                                        android:textColorHint="@color/text_color"
+                                        android:textSize="18dp"
+                                        app:carbon_cornerRadius="32dp"
+                                        app:carbon_elevation="4dp"
+                                        app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                                        />
+
+                                    <carbon.widget.EditText
+                                        android:id="@+id/edtAccountNumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:background="@drawable/border_edit_text"
+                                        android:drawableEnd="@drawable/ic_passport"
+                                        android:hint="Account number"
+                                        android:importantForAutofill="no"
+                                        android:inputType="number"
+                                        android:maxLength="20"
+                                        android:paddingStart="32dp"
+                                        android:paddingEnd="32dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/text_color"
+                                        android:textColorHighlight="@color/text_color"
+                                        android:textColorHint="@color/text_color"
+                                        android:textSize="18dp"
+                                        app:carbon_cornerRadius="32dp"
+                                        app:carbon_elevation="4dp"
+                                        app:carbon_elevationShadowColor="@color/carbon_blueGrey_500" />
+
+                                    <carbon.widget.EditText
+                                        android:id="@+id/edtIfscCode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="16dp"
+                                        android:layout_marginBottom="16dp"
+                                        android:background="@drawable/border_edit_text"
+                                        android:drawableEnd="@drawable/ic_dot_circle"
+                                        android:hint="IFSC Code"
+                                        android:importantForAutofill="no"
+                                        android:inputType="text"
+                                        android:maxLength="12"
+                                        android:paddingStart="32dp"
+                                        android:paddingEnd="32dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/text_color"
+                                        android:textColorHighlight="@color/text_color"
+                                        android:textColorHint="@color/text_color"
+                                        android:textSize="18dp"
+                                        app:carbon_cornerRadius="32dp"
+                                        app:carbon_elevation="4dp"
+                                        app:carbon_elevationShadowColor="@color/carbon_blueGrey_500" />
+
+
+                                    <RelativeLayout
+                                        android:layout_marginTop="16dp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:textSize="14dp"
+                                            style="@style/TextBold"
+                                            android:textColor="@color/colorGreen"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="UPI Details"/>
+
+                                    </RelativeLayout>
+
+                                    <carbon.widget.EditText
+                                        android:layout_marginTop="16dp"
+                                        android:id="@+id/edtupiTxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/border_edit_text"
+                                        android:drawableEnd="@drawable/ic_user_alt"
+                                        android:hint="Enter UPI id"
+                                        android:importantForAutofill="no"
+                                        android:inputType="text"
+                                        android:paddingStart="32dp"
+                                        android:paddingEnd="32dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/text_color"
+                                        android:textColorHighlight="@color/text_color"
+                                        android:textColorHint="@color/text_color"
+                                        android:textSize="18dp"
+                                        app:carbon_cornerRadius="32dp"
+                                        app:carbon_elevation="4dp"
+                                        android:layout_marginBottom="16dp"
+                                        app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                                        />
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/proceedNow"
+                                        style="@style/MaterialButtonStyleGreen"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="45dp"
+                                        android:layout_gravity="center"
+                                        android:layout_margin="8dp"
+                                        android:clickable="true"
+                                        android:drawableEnd="@drawable/ic_arrow_right"
+                                        android:gravity="center"
+                                        android:padding="10dp"
+                                        android:text="    Save"
+                                        android:textColor="@color/white"
+                                        android:textSize="16dp"
+                                        android:visibility="visible"
+                                        app:backgroundTint="@color/colorPrimary"
+                                        app:cornerRadius="32dp" />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:gravity="center"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                    </LinearLayout>
+                </FrameLayout>
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/connection_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+
+                android:textColor="@color/text_color"
+                android:textSize="18sp"
+                android:visibility="gone"
+
+                />
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
