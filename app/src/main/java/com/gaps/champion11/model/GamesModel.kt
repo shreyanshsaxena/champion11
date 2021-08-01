@@ -17,7 +17,4 @@ data class GamesModel (
     val isFutureGame:Boolean,
     @SerializedName("pattiResult")
     val pattiResult:String
-
-
-
 )

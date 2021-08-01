@@ -89,7 +89,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_marginEnd="@dimen/margin_8dp"
                     android:layout_marginTop="16dp"
-                    android:id="@+id/userIDTextInputEditText"
+                    android:id="@+id/amountTextInputEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_edit_text"
@@ -111,7 +111,7 @@
                   />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bookNow"
+                    android:id="@+id/proceedNow"
                     style="@style/MaterialButtonStyleGreen"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"

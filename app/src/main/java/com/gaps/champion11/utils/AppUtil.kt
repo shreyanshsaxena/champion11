@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -24,6 +25,7 @@ import com.gaps.champion11.R
 import com.gaps.champion11.enum.MessageType
 import com.gaps.champion11.ui.adapter.SpinnerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import org.joda.time.DateTime
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -217,8 +219,31 @@ class AppUtil {
                 alertDialog!!.show()
             }
         }
-    }
+        fun onSnack(view: View, errorMessage: String) {
+            //Snackbar(view)
+            val snackbar = Snackbar.make(
+                view, errorMessage,
+                Snackbar.LENGTH_LONG
+            )
+            snackbar.setActionTextColor(Color.RED)
+            val snackbarView = snackbar.view
+            val params: FrameLayout.LayoutParams = snackbarView.layoutParams as FrameLayout.LayoutParams
+            params.setMargins(
+                0,
+                0,
+                0,
+                0
+            );
+            snackbarView.layoutParams = params
+            snackbarView.setBackgroundColor(Color.RED)
+            val textView =
+                snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+            textView.setTextColor(Color.WHITE)
+            textView.textSize = 16f
+            snackbar.show()
+        }
 
+    }
 
 
 

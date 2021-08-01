@@ -3,6 +3,7 @@ package com.gaps.champion11.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import com.gaps.champion11.R
 import com.gaps.champion11.model.GamesModel
 import com.gaps.champion11.ui.BookingNumberActivity
 import com.gaps.champion11.utils.AppUtil
+import com.gaps.champion11.utils.SharedPrefUtils
 import com.google.android.material.button.MaterialButton
 
 class GameListAdapter (
@@ -41,6 +43,7 @@ class GameListAdapter (
 
             holder.bookNowUpcomingTxt.isEnabled = gameDataItem.isFutureGame
             holder.bookNowUpcomingTxt.setOnClickListener {
+                SharedPrefUtils.setInt(context,SharedPrefUtils.SELECTED_GAME_ID,gameDataItem.gameId)
                 intent = Intent(context, BookingNumberActivity::class.java)
 
 

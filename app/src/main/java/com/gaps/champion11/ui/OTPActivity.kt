@@ -52,6 +52,8 @@ class OTPActivity : BaseActivity() {
                 if (response.isSuccessful && response.code() == HttpCode.OK) {
                     val userDetails=response.body()
                     val userDetailString=Gson().toJson(userDetails,UserDetails::class.java)
+
+                    SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.USER_ID, userDetails?.userid)
                     SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.USER_DETAILS,userDetailString)
                     startActivity(Intent(this@OTPActivity, HomeScreenActivity::class.java))
                     finish()

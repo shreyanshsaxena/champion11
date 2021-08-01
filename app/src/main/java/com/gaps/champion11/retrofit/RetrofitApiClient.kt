@@ -30,7 +30,7 @@ object RetrofitApiClient {
     fun getApiInterfaceUser(ctx: Context): UserManagement {
         return getRetrofitInstance(ctx).create(UserManagement::class.java)
     }
-    fun getApiInterfaceTransaction(ctx: Context): TransactionManagement {
+    fun getApiInterfaceTransaction(ctx: Context?): TransactionManagement {
         return getRetrofitInstance(ctx).create(TransactionManagement::class.java)
     }
     fun getApiInterfaceGames(ctx: Context?): GamesManagement {
@@ -46,9 +46,9 @@ object RetrofitApiClient {
             updateUIHandler = Handler(Looper.getMainLooper())
         }
         val token: String? = SharedPrefUtils.getString(ctx, SharedPrefUtils.KEY_TOKEN, "")
-        httpClient.readTimeout(1, TimeUnit.MINUTES)
-        httpClient.writeTimeout(1, TimeUnit.MINUTES)
-        httpClient.connectTimeout(1, TimeUnit.MINUTES)
+        httpClient.readTimeout(2, TimeUnit.MINUTES)
+        httpClient.writeTimeout(2, TimeUnit.MINUTES)
+        httpClient.connectTimeout(2, TimeUnit.MINUTES)
         httpClient.addInterceptor { chain ->
             val original: Request = chain.request()
             val requestBuilder: Request.Builder = original.newBuilder()

@@ -66,6 +66,8 @@ class NumberListAdapter(private val numberList: List<NumberDetail>, val context:
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val numberTxt: TextView = itemView.findViewById(R.id.numberTxt)
+        val betTxt: TextView = itemView.findViewById(R.id.betTxt)
+
     }
 
 

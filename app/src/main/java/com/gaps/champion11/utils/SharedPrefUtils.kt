@@ -8,6 +8,7 @@ class SharedPrefUtils{
     companion object {
          const val AppPreference = "PREFERENCES"
         const val KEY_TOKEN = "keytoken"
+        const val SELECTED_GAME_ID = "selectedgameid"
         const val SELECTED_NO = "selectedno"
         const val USER_NAME = "username"
         const val USER_DETAILS = "userdetails"
@@ -43,8 +44,8 @@ class SharedPrefUtils{
             editor.apply()
         }
 
-        fun getInt(context: Context, key: String?): Long {
-            return preferences.getInt(key, Int.MIN_VALUE).toLong()
+        fun getInt(context: Context, key: String?): Int {
+            return preferences.getInt(key, Int.MIN_VALUE).toInt()
         }
 
         fun getLong(context: Context, key: String?): Long {
