@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gaps.champion11.R
 import com.gaps.champion11.model.NumberDetail
 import com.gaps.champion11.utils.SharedPrefUtils
+import java.text.MessageFormat
 
 class NumberListAdapter(private val numberList: List<NumberDetail>, val context: Context?) :
     RecyclerView.Adapter<NumberListAdapter.ViewHolder>() {
@@ -42,6 +43,16 @@ class NumberListAdapter(private val numberList: List<NumberDetail>, val context:
             }
             holder.numberTxt.setTextColor(Color.BLACK)
         }
+        if(numberList[position].isOptionBetUser){
+            holder.betTxt.visibility=View.VISIBLE
+            holder.betTxt.text=MessageFormat.format("₹ {0}",numberList[position].betAmount)
+            if (context != null) {
+                holder.numberTxt.background =
+                    (ResourcesCompat.getDrawable(context.resources, R.drawable.border_all_green, null))
+            }
+            holder.numberTxt.setTextColor(Color.WHITE)
+        }
+
         holder.numberTxt.text = numberList[position].number
         holder.numberTxt.setOnClickListener {
             for (i in numberList) {

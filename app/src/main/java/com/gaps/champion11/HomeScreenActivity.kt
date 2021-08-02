@@ -11,6 +11,7 @@ import androidx.navigation.ui.navigateUp
 import com.gaps.champion11.databinding.ActivityHomescreenBinding
 import com.gaps.champion11.ui.BaseNavigationActivity
 import com.gaps.champion11.ui.BookingNumberActivity
+import com.gaps.champion11.ui.ProfileActivity
 import com.gaps.champion11.ui.home.HomeFragment
 import com.gaps.champion11.ui.wallet.WalletActivity
 import com.jakewharton.rxbinding4.view.clicks
@@ -50,6 +51,15 @@ class HomeScreenActivity : BaseNavigationActivity() {
                 startActivity(Intent(this@HomeScreenActivity, WalletActivity::class.java))
 
             }
+        binding.profile.clicks()
+            .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                startActivity(Intent(this@HomeScreenActivity, ProfileActivity::class.java))
+
+            }
+
+
     }
 
     fun callBookingActivity(){

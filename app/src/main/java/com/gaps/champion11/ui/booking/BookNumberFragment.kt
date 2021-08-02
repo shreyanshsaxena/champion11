@@ -12,6 +12,7 @@ import com.gaps.champion11.model.NumberDetail
 import com.gaps.champion11.model.OptionBet
 import com.gaps.champion11.model.TransactionModel
 import com.gaps.champion11.retrofit.RetrofitApiClient
+import com.gaps.champion11.ui.BookingNumberActivity
 import com.gaps.champion11.utils.AppUtil
 import com.gaps.champion11.utils.CommandCallbackWithFailure
 import com.gaps.champion11.utils.HttpCode
@@ -24,7 +25,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.MessageFormat
 import java.util.concurrent.TimeUnit
 
 class BookNumberFragment : Fragment() {
@@ -74,7 +74,7 @@ class BookNumberFragment : Fragment() {
             postBetAmountOnNumber(optionBet)
 
         } else {
-            AppUtil.onSnack(
+            AppUtil.onSnackCoordinate(
                 binding.amountTextInputEditText,
                 "Please enter an amount to place a bet"
             )
@@ -83,12 +83,14 @@ class BookNumberFragment : Fragment() {
 
 
     private fun postBetAmountOnNumber(optionBet: OptionBet) {
+
         val call = RetrofitApiClient.getApiInterfaceTransaction(context).placeOptionBet(optionBet)
         call?.enqueue(object : Callback<ResponseBody?> {
             override fun onResponse(
                 call: Call<ResponseBody?>?,
                 response: Response<ResponseBody?>?
             ) {
+                (activity as BookingNumberActivity?)!!.hideProgressDialog()
                 if (response != null && response.isSuccessful) {
                     handleBetSuccess(optionBet)
                 } else {
@@ -98,6 +100,8 @@ class BookNumberFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ResponseBody?>?, t: Throwable?) {
+                (activity as BookingNumberActivity?)!!.hideProgressDialog()
+
                 handleBetError()
             }
 
@@ -106,6 +110,7 @@ class BookNumberFragment : Fragment() {
     }
 
     private fun fetchLatestWalletAmountFromServer() {
+        context?.let { (activity as BookingNumberActivity?)!!.showProgressDialog(it) }
         val call = RetrofitApiClient.getApiInterfaceTransaction(context).getTransactionsList(0, 1)
         call.enqueue(object : Callback<List<TransactionModel>> {
             override fun onResponse(
@@ -118,6 +123,7 @@ class BookNumberFragment : Fragment() {
                         if (transactionList[0].amount > 0) {
                             placeOptionBet()
                         } else {
+                            (activity as BookingNumberActivity?)!!.hideProgressDialog()
                             AppUtil.onSnack(
                                 binding.amountTextInputEditText,
                                 "No sufficient amount in the wallet to place the bet"
@@ -125,11 +131,13 @@ class BookNumberFragment : Fragment() {
                         }
                     }
                 } else {
+                    (activity as BookingNumberActivity?)!!.hideProgressDialog()
                     handleBetError()
                 }
             }
 
             override fun onFailure(call: Call<List<TransactionModel>>, t: Throwable) {
+                (activity as BookingNumberActivity?)!!.hideProgressDialog()
                 handleBetError()
             }
 

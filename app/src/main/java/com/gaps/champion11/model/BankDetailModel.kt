@@ -11,6 +11,10 @@ data class BankDetailModel(
     val branch: String,
     @SerializedName("IFSC")
     val ifsc: String,
-    @SerializedName("Id:")
-    val id: Int
+    @SerializedName("Address")
+    val address: String,
+    @SerializedName("Id")
+    val id: Int,
+    @SerializedName("UpiId")
+    val upiId: String?
 )

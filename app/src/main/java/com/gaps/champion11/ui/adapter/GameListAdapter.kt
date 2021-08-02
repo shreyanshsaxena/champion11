@@ -3,13 +3,11 @@ package com.gaps.champion11.ui.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.gaps.champion11.HomeScreenActivity
 import com.gaps.champion11.R
 import com.gaps.champion11.model.GamesModel
 import com.gaps.champion11.ui.BookingNumberActivity

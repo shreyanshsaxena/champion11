@@ -1,5 +1,6 @@
 package com.gaps.champion11.ui.booking
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gaps.champion11.databinding.FragmentBookingBinding
 import com.gaps.champion11.model.GameOptionBetUser
+import com.gaps.champion11.model.GamesModel
 import com.gaps.champion11.model.NumberDetail
 import com.gaps.champion11.retrofit.RetrofitApiClient
 import com.gaps.champion11.ui.BookingNumberActivity
 import com.gaps.champion11.ui.adapter.NumberListAdapter
+import com.gaps.champion11.utils.AppUtil
 import com.gaps.champion11.utils.SharedPrefUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -32,7 +35,7 @@ class BookingFragment : Fragment() {
     var root: View? = null
     val numberList = ArrayList<NumberDetail>()
     private var optionDataBody: List<GameOptionBetUser>? = null
-    private var numberListAdapter:NumberListAdapter?=null
+    private var numberListAdapter: NumberListAdapter? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -62,6 +65,9 @@ class BookingFragment : Fragment() {
                 ViewModelProvider(this).get(BookingViewModel::class.java)
             _binding = FragmentBookingBinding.inflate(inflater, container, false)
             root = binding.root
+
+            binding.currentSlotTime.text =
+                SharedPrefUtils.getString(context, SharedPrefUtils.SELECTED_GAME_SLOT, null)
             setupListeners()
 
         }
@@ -69,8 +75,29 @@ class BookingFragment : Fragment() {
         return root as View
     }
 
-    private fun getOptionBets() {
 
+    private fun getLastSlotWinningNumber() {
+        context?.let { (activity as BookingNumberActivity?)!!.showProgressDialog(it) }
+        val call = RetrofitApiClient.getApiInterfaceGames(context).getLastGameWinningNo()
+        call.enqueue(object : Callback<List<GamesModel>> {
+            @SuppressLint("SetTextI18n")
+            override fun onResponse(call: Call<List<GamesModel>>?, response: Response<List<GamesModel>>?) {
+                if (response != null && response.isSuccessful&& response.body()!=null&& response.body().isNotEmpty()
+                ) {
+                    binding.lastWinningSlot.text= AppUtil.getDateTimeFromString(response.body()[0].startTime).uppercase() + " to " + AppUtil.getDateTimeFromString(response.body()[0].endTime).uppercase()
+                    binding.lastOptionBet.text=response.body()[0].correctOption
+                    binding.lastPattiNo.text=response.body()[0].pattiResult
+                }
+            }
+
+            override fun onFailure(call: Call<List<GamesModel>>?, t: Throwable?) {
+            }
+
+        })
+    }
+
+    private fun getOptionBets() {
+        context?.let { (activity as BookingNumberActivity?)!!.showProgressDialog(it) }
         val gameId = context?.let { SharedPrefUtils.getInt(it, SharedPrefUtils.SELECTED_GAME_ID) }
         val call = RetrofitApiClient.getApiInterfaceGames(context).getGameOptionBets((gameId!!))
         call.enqueue(object : Callback<List<GameOptionBetUser>> {
@@ -78,21 +105,21 @@ class BookingFragment : Fragment() {
                 call: Call<List<GameOptionBetUser>>?,
                 response: Response<List<GameOptionBetUser>>?
             ) {
+                (activity as BookingNumberActivity?)!!.hideProgressDialog()
                 if (response != null && response.isSuccessful) {
                     optionDataBody = response.body()
                     if (optionDataBody != null) {
 
-                        for (i in arr) {
+                        for (i in numberList) {
                             for (j in optionDataBody!!) {
-                                if (i == j.option.toString()){
-                                    for (a in numberList) {
-                                        a.isOptionBetUser=true
-                                        a.betAmount=a.betAmount
-                                    }
+                                if (i.number.equals(j.option.toString())) {
+                                    i.isOptionBetUser = true
+                                    i.betAmount = j.amount
+                                    numberListAdapter?.notifyDataSetChanged()
+
                                 }
                             }
                         }
-                        numberListAdapter?.notifyDataSetChanged()
                     }
 
                 }
@@ -100,6 +127,8 @@ class BookingFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<GameOptionBetUser>>?, t: Throwable?) {
+                (activity as BookingNumberActivity?)!!.hideProgressDialog()
+
             }
 
         })
@@ -110,17 +139,17 @@ class BookingFragment : Fragment() {
 
     private fun setupUI() {
         for (i in arr) {
-            val numberDetail = NumberDetail(i, false, false,0);
+            val numberDetail = NumberDetail(i, false, false, 0);
             numberList.add(numberDetail)
         }
         val gridLayoutManager = GridLayoutManager(activity, 5, RecyclerView.VERTICAL, false)
         binding.numberList.layoutManager = gridLayoutManager
 
-         numberListAdapter = NumberListAdapter(numberList, context)
+        numberListAdapter = NumberListAdapter(numberList, context)
         binding.numberList.isNestedScrollingEnabled = false
         binding.numberList.adapter = numberListAdapter
-
         getOptionBets()
+        getLastSlotWinningNumber()
     }
 
     private fun setupListeners() {

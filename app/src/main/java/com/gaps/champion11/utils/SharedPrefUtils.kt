@@ -9,9 +9,11 @@ class SharedPrefUtils{
          const val AppPreference = "PREFERENCES"
         const val KEY_TOKEN = "keytoken"
         const val SELECTED_GAME_ID = "selectedgameid"
+        const val SELECTED_GAME_SLOT = "selectedgameslot"
         const val SELECTED_NO = "selectedno"
         const val USER_NAME = "username"
         const val USER_DETAILS = "userdetails"
+        const val MOBILE_NO = "mobile_no"
         const val USER_ID = "userid"
         private val preferences: SharedPreferences = BaseApplication.appContext!!.getSharedPreferences(
                 AppPreference,

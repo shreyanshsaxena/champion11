@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -91,6 +92,13 @@ class AppUtil {
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = myAdapter
 
+        }
+
+        fun getGenderValueString(genderVal: Int?):String{
+            if(genderVal==1)
+                return "Male"
+            else
+                return "Female"
         }
 
         fun showDialogWithCallback(
@@ -219,6 +227,30 @@ class AppUtil {
                 alertDialog!!.show()
             }
         }
+        fun onSnackCoordinate(view: View, errorMessage: String) {
+            //Snackbar(view)
+            val snackbar = Snackbar.make(
+                view, errorMessage,
+                Snackbar.LENGTH_LONG
+            )
+            snackbar.setActionTextColor(Color.RED)
+            val snackbarView = snackbar.view
+            val params: CoordinatorLayout.LayoutParams = snackbarView.layoutParams as CoordinatorLayout.LayoutParams
+            params.setMargins(
+                0,
+                0,
+                0,
+                0
+            )
+            snackbarView.layoutParams = params
+            snackbarView.setBackgroundColor(Color.RED)
+            val textView =
+                snackbarView.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+            textView.setTextColor(Color.WHITE)
+            textView.textSize = 16f
+            snackbar.show()
+        }
+
         fun onSnack(view: View, errorMessage: String) {
             //Snackbar(view)
             val snackbar = Snackbar.make(

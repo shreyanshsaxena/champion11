@@ -15,6 +15,7 @@ import com.gaps.champion11.retrofit.RetrofitApiClient
 import com.gaps.champion11.ui.adapter.GameListAdapter
 import com.gaps.champion11.utils.AppUtil
 import com.gaps.champion11.utils.HttpCode
+import com.gaps.champion11.utils.SharedPrefUtils
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
@@ -67,6 +68,11 @@ class HomeFragment : Fragment() {
         return root
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        getGamesList()
+    }
     private fun getGamesList() {
         context?.let { (activity as HomeScreenActivity).showProgressDialog(it) }
 
@@ -88,6 +94,12 @@ class HomeFragment : Fragment() {
                                     gameList.add(i)
                                 }
                                 else{
+                                    SharedPrefUtils.setString(context!!,SharedPrefUtils.SELECTED_GAME_SLOT, AppUtil.getDateTimeFromString(
+                                        i.startTime
+                                    ).uppercase() + " to " + AppUtil.getDateTimeFromString(
+                                        i.endTime
+                                    ).uppercase())
+                                    SharedPrefUtils.setInt(context!!,SharedPrefUtils.SELECTED_GAME_ID,i.gameId)
                                     binding.noCurrentSlot.visibility = View.GONE
                                     binding.currentSlotLayout.visibility = View.VISIBLE
                                     homeViewModel._text.value = AppUtil.getDateTimeFromString(

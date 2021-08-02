@@ -9,6 +9,8 @@ import retrofit2.http.Query
 interface GamesManagement {
     @GET("/api/Games")
     fun getGamesList(): Call<List<GamesModel>>
+    @GET("/api/Games/lastGame")
+    fun getLastGameWinningNo(): Call<List<GamesModel>>
 
     @GET("/api/games/optionbets")
     fun getGameOptionBets(@Query("gameId") gameId: Int): Call<List<GameOptionBetUser>>

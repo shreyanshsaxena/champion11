@@ -20,7 +20,7 @@ class AddBankDetailsActivity : BaseNavigationActivity() {
 
 
     private fun saveBankDetails() {
-        val bankDetailModel = BankDetailModel(binding.edtAccountNumber.text.toString()," "," ",binding.edtIfscCode.text.toString(),0)
+        val bankDetailModel = BankDetailModel(binding.edtAccountNumber.text.toString()," "," ",binding.edtIfscCode.text.toString(),"",0,null)
 
 
     }

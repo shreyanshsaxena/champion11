@@ -7,5 +7,8 @@ data class UserDetails(
     @SerializedName("phoneNumber") val phonenumber: String,
     @SerializedName("email") val email: String,
     @SerializedName("userId") val userid: String,
-    @SerializedName("fullName") val fullname: String
+    @SerializedName("fullName") val fullname: String,
+    @SerializedName("gender") val gender: Int,
+    @SerializedName("state") val state: String
+
 )

@@ -55,6 +55,7 @@ class OTPActivity : BaseActivity() {
 
                     SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.USER_ID, userDetails?.userid)
                     SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.USER_DETAILS,userDetailString)
+                    SharedPrefUtils.setString(this@OTPActivity,SharedPrefUtils.MOBILE_NO,userDetails?.username)
                     startActivity(Intent(this@OTPActivity, HomeScreenActivity::class.java))
                     finish()
 
