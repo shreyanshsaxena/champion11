@@ -51,7 +51,7 @@ class BookingFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as BookingNumberActivity?)!!.setHeaderTextBookingActivity()
-
+        getOptionBets()
 
     }
 
@@ -77,7 +77,6 @@ class BookingFragment : Fragment() {
 
 
     private fun getLastSlotWinningNumber() {
-        context?.let { (activity as BookingNumberActivity?)!!.showProgressDialog(it) }
         val call = RetrofitApiClient.getApiInterfaceGames(context).getLastGameWinningNo()
         call.enqueue(object : Callback<List<GamesModel>> {
             @SuppressLint("SetTextI18n")
@@ -95,6 +94,7 @@ class BookingFragment : Fragment() {
 
         })
     }
+
 
     private fun getOptionBets() {
         context?.let { (activity as BookingNumberActivity?)!!.showProgressDialog(it) }
@@ -159,7 +159,7 @@ class BookingFragment : Fragment() {
             .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                (activity as BookingNumberActivity?)!!.loadBookingNumberFragment()
+                (activity as BookingNumberActivity?)!!.loadBookingNumberFragment(numberList)
             }
 
     }

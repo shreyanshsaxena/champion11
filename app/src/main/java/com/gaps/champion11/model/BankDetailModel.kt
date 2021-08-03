@@ -3,18 +3,18 @@ package com.gaps.champion11.model
 import com.google.gson.annotations.SerializedName
 
 data class BankDetailModel(
-    @SerializedName("AccountNo")
+    @SerializedName("accountNo")
     val accountNo: String,
-    @SerializedName("Bank")
+    @SerializedName("bank")
     val bank: String,
-    @SerializedName("Branch")
+    @SerializedName("branch")
     val branch: String,
-    @SerializedName("IFSC")
+    @SerializedName("ifsc")
     val ifsc: String,
-    @SerializedName("Address")
+    @SerializedName("address")
     val address: String,
-    @SerializedName("Id")
+    @SerializedName("id")
     val id: Int,
-    @SerializedName("UpiId")
+    @SerializedName("upiId")
     val upiId: String?
 )

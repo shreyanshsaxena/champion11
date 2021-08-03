@@ -8,6 +8,7 @@ class SharedPrefUtils{
     companion object {
          const val AppPreference = "PREFERENCES"
         const val KEY_TOKEN = "keytoken"
+        const val AMOUNT = "amount"
         const val SELECTED_GAME_ID = "selectedgameid"
         const val SELECTED_GAME_SLOT = "selectedgameslot"
         const val SELECTED_NO = "selectedno"

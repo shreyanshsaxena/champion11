@@ -85,6 +85,7 @@ class HomeFragment : Fragment() {
                 ) {
                     (activity as HomeScreenActivity).hideProgressDialog()
                     if (response.isSuccessful && response.code() == HttpCode.OK) {
+                        gameList.clear()
                         binding.noCurrentSlot.visibility = View.VISIBLE
                         binding.currentSlotLayout.visibility = View.GONE
                         responseDataModel = response.body().sortedBy { it.startTime }

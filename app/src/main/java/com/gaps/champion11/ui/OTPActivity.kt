@@ -1,13 +1,29 @@
 package com.gaps.champion11.ui
 
+import android.R
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.gaps.champion11.HomeScreenActivity
 import com.gaps.champion11.OTPViewModel
 import com.gaps.champion11.databinding.ActivityOtpBinding
 import com.gaps.champion11.enum.MessageType
+import com.gaps.champion11.model.TncAcceptModel
 import com.gaps.champion11.model.TokenResponseModel
 import com.gaps.champion11.model.UserDetails
 import com.gaps.champion11.model.VerifyOTPRequest
@@ -18,6 +34,7 @@ import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -109,12 +126,22 @@ class OTPActivity : BaseActivity() {
                 response: Response<TokenResponseModel?>
             ) {
                 if (response.isSuccessful && response.code() == HttpCode.OK) {
-                    SharedPrefUtils.setString(
-                        this@OTPActivity,
-                        SharedPrefUtils.KEY_TOKEN,
-                        response.body()!!.token
-                    )
-                    getUserDetails()
+                    if(response.body()!=null){
+                        SharedPrefUtils.setString(
+                            this@OTPActivity,
+                            SharedPrefUtils.KEY_TOKEN,
+                            response.body()!!.token
+                        )
+                        if(response.body()!!.acceptedTnC){
+                            getUserDetails()
+                        }
+                        else{
+                            hideProgressDialog()
+                            showTncDialogToUser()
+                        }
+                    }
+
+
                 } else {
                     hideProgressDialog()
                     AppUtil.showDialogWithCallback(
@@ -148,6 +175,46 @@ class OTPActivity : BaseActivity() {
             }
         })
     }
+
+    private fun showTncDialogToUser() {
+        AppUtil.showTncDialogWithCallback(
+            this@OTPActivity,
+            object : CommandCallbackWithFailure {
+                override fun onSuccess() {
+                    acceptTnc()
+                }
+
+                override fun onFailure() {
+                    SharedPrefUtils.clearAll(this@OTPActivity)
+                    startActivity(Intent(this@OTPActivity, LoginActivity::class.java))
+                    finish()
+                }
+
+            })
+    }
+
+    private fun acceptTnc(){
+        showProgressDialog(this)
+        val tncAcceptModel=TncAcceptModel(mobile,true)
+        val call = RetrofitApiClient.getApiInterfaceUser(this).acceptTermsCondition(tncAcceptModel)
+        call!!.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(
+                call: Call<ResponseBody?>?,
+                response: Response<ResponseBody?>?
+            ) {
+                getUserDetails()
+            }
+
+            override fun onFailure(call: Call<ResponseBody?>?, t: Throwable?) {
+                hideProgressDialog()
+                SharedPrefUtils.clearAll(this@OTPActivity)
+                startActivity(Intent(this@OTPActivity, LoginActivity::class.java))
+                finish()
+            }
+        })
+
+    }
+
 
     private fun setupListenersAndObservers() {
         //resend otp wait text

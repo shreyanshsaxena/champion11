@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.gaps.champion11.R
 import com.gaps.champion11.databinding.FragmentBookingNumberBinding
 import com.gaps.champion11.enum.MessageType
 import com.gaps.champion11.model.NumberDetail
@@ -74,6 +75,7 @@ class BookNumberFragment : Fragment() {
             postBetAmountOnNumber(optionBet)
 
         } else {
+            (activity as BookingNumberActivity?)!!.hideProgressDialog()
             AppUtil.onSnackCoordinate(
                 binding.amountTextInputEditText,
                 "Please enter an amount to place a bet"
@@ -160,6 +162,9 @@ class BookNumberFragment : Fragment() {
                 MessageType.SUCCESS,
                 object : CommandCallbackWithFailure {
                     override fun onSuccess() {
+                        fragmentManager!!.beginTransaction()
+                            .replace(R.id.frame_container, BookingFragment.newInstance())
+                            .commitAllowingStateLoss()
                         AppUtil.hideAlertDialog()
                     }
                 })
@@ -189,9 +194,27 @@ class BookNumberFragment : Fragment() {
             .observeOn(Schedulers.io()).throttleFirst(1, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                fetchLatestWalletAmountFromServer()
-//                startActivity(Intent(this@Boo, HomeScreenAcivity::class.java))
-
+                val alreadyBetAmt= context?.let { it1 -> SharedPrefUtils.getInt(it1,SharedPrefUtils.AMOUNT) }
+                if (alreadyBetAmt != null) {
+                    if(alreadyBetAmt+ binding.amountTextInputEditText.text.toString().toInt()>5000){
+                        context?.let {
+                            AppUtil.showDialogWithCallback(
+                                it,
+                                "Sorry!! You cannot bet more than Rs 5000 on a single number.",
+                                null,
+                                null,
+                                MessageType.ERROR,
+                                object : CommandCallbackWithFailure {
+                                    override fun onSuccess() {
+                                        AppUtil.hideAlertDialog()
+                                    }
+                                })
+                        }
+                    }
+                    else{
+                        fetchLatestWalletAmountFromServer()
+                    }
+                }
             }
     }
 

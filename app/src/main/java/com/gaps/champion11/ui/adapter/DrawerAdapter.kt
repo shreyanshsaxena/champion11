@@ -16,6 +16,7 @@ import com.gaps.champion11.R
 import com.gaps.champion11.model.DrawerListItem
 import com.gaps.champion11.ui.LoginActivity
 import com.gaps.champion11.ui.PolicyActivity
+import com.gaps.champion11.ui.bankdetails.AddBankDetailsActivity
 import com.gaps.champion11.utils.SharedPrefUtils
 import com.hcl.iatm.Utils.StringConstants
 
@@ -57,9 +58,8 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     private fun openRelevantFragment(drawerListItem: DrawerListItem) {
         intent = null
         when (drawerListItem.name) {
-            "Home" -> {
-                intent = Intent(context, HomeScreenActivity::class.java)
-//                intent!!.putExtra(StringConstants.FRAGMENT_TYPE, "onboard")
+            "Bank Account" -> {
+                intent = Intent(context, AddBankDetailsActivity::class.java)
             }
             "Log Out" -> {
                 SharedPrefUtils.clearAll(context)

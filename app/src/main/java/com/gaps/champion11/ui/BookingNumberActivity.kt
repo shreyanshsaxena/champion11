@@ -11,6 +11,7 @@ import com.gaps.champion11.databinding.ActivityBookingBinding
 import com.gaps.champion11.model.NumberDetail
 import com.gaps.champion11.ui.booking.BookNumberFragment
 import com.gaps.champion11.ui.booking.BookingFragment
+import com.gaps.champion11.utils.SharedPrefUtils
 
 class BookingNumberActivity : BaseNavigationActivity() {
     private lateinit var binding: ActivityBookingBinding
@@ -36,7 +37,12 @@ class BookingNumberActivity : BaseNavigationActivity() {
         binding.championHeaderTxt.text = getString(R.string.welcome_header)
 
     }
-    fun loadBookingNumberFragment(){
+    fun loadBookingNumberFragment(numberList: ArrayList<NumberDetail>){
+        for (i in numberList){
+            if(i.isSelected){
+                SharedPrefUtils.setInt(context,SharedPrefUtils.AMOUNT,i.betAmount)
+            }
+        }
         binding.championHeaderTxt.text = getString(R.string.staking_text)
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_container, BookNumberFragment.newInstance()).addToBackStack(null)

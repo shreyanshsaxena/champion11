@@ -276,7 +276,7 @@
                                         app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
                                         />
                                     <com.google.android.material.button.MaterialButton
-                                        android:id="@+id/proceedNow"
+                                        android:id="@+id/saveBankDetails"
                                         style="@style/MaterialButtonStyleGreen"
                                         android:layout_width="match_parent"
                                         android:layout_height="45dp"

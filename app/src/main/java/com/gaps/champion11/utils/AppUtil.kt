@@ -1,6 +1,7 @@
 package com.gaps.champion11.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,7 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -36,6 +41,7 @@ import java.util.*
 class AppUtil {
 
     companion object {
+        private var gdprDialog: AlertDialog?=null
         var alertMessage: String? = null
 
         private lateinit var mBottomSheetDialog: Any
@@ -215,6 +221,11 @@ class AppUtil {
                 alertDialog!!.dismiss()
             }
         }
+        fun hideTncAlertDialog() {
+            if (gdprDialog != null && gdprDialog!!.isShowing) {
+                gdprDialog!!.dismiss()
+            }
+        }
         fun getDeviceMetrics(context: Context): DisplayMetrics {
             val metrics = DisplayMetrics()
             val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -227,6 +238,21 @@ class AppUtil {
                 alertDialog!!.show()
             }
         }
+        private fun showTncAlertDialog() {
+            if (gdprDialog != null && !gdprDialog!!.isShowing) {
+                gdprDialog!!.show()
+            }
+        }
+        fun hideKeyboard(ctx: Context?) {
+            if (ctx == null) return
+            val inputManager = ctx
+                .getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            // check if no view has focus:
+            val v = (ctx as Activity).currentFocus ?: return
+            inputManager.hideSoftInputFromWindow(v.windowToken, 0)
+        }
+
         fun onSnackCoordinate(view: View, errorMessage: String) {
             //Snackbar(view)
             val snackbar = Snackbar.make(
@@ -274,8 +300,63 @@ class AppUtil {
             textView.textSize = 16f
             snackbar.show()
         }
+        fun showTncDialogWithCallback(context: Context, commandCallback: CommandCallbackWithFailure) {
+            if (gdprDialog != null && gdprDialog!!.isShowing()) {
+                return
+            }
+            val rootView = (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
+            val builder = AlertDialog.Builder(context, R.style.full_screen_dialog)
+            val inflater = LayoutInflater.from(context)
+            @SuppressLint("InflateParams") val dialogView: View =
+                inflater.inflate(R.layout.tncacceptdialog, null)
+            builder.setView(dialogView)
+            builder.setCancelable(false)
+            val btnOK = dialogView.findViewById<TextView>(R.id.buttonAccept)
+            val buttonCancel = dialogView.findViewById<TextView>(R.id.buttonDecline)
+            val imageBack = dialogView.findViewById<ImageView>(R.id.imageBack)
+            val WebViewWithCSS = dialogView.findViewById<WebView>(R.id.web_view)
+            gdprDialog = builder.create()
+            gdprDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            if (gdprDialog!!.getWindow() != null) {
+                gdprDialog!!.getWindow()?.setLayout(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
+                gdprDialog!!.getWindow()!!.setBackgroundDrawableResource(android.R.color.transparent)
+            }
+            if (gdprDialog!!.getWindow() != null) {
+                gdprDialog!!.getWindow()
+                    ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                gdprDialog!!.getWindow()
+                    ?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+            }
+            btnOK.setOnClickListener { view: View? ->
+                hideTncAlertDialog()
+                commandCallback.onSuccess()
+            }
+            buttonCancel.setOnClickListener { v: View? ->
+                hideTncAlertDialog()
+                commandCallback.onFailure()
+            }
+            showTncAlertDialog()
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(gdprDialog!!.window!!.attributes)
+            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+            gdprDialog!!.window!!.attributes = layoutParams
+            val webSetting = WebViewWithCSS.settings
+            webSetting.javaScriptEnabled = true
+            webSetting.allowFileAccess = true
+            webSetting.allowContentAccess = true
+            WebViewWithCSS.scrollBarStyle = WebView.SCROLLBARS_OUTSIDE_OVERLAY
+            WebViewWithCSS.isScrollbarFadingEnabled = false
+            WebViewWithCSS.webViewClient = WebViewClient()
+            WebViewWithCSS.loadUrl("file:///android_asset/gdpr")
+        }
 
     }
+
 
 
 
