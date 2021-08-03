@@ -41,8 +41,14 @@ class GameListAdapter (
 
             holder.bookNowUpcomingTxt.isEnabled = gameDataItem.isFutureGame
             holder.bookNowUpcomingTxt.setOnClickListener {
+                SharedPrefUtils.setString(context,SharedPrefUtils.SELECTED_GAME_SLOT, AppUtil.getDateTimeFromString(
+                    gameDataItem.startTime
+                ).uppercase() + " to " + AppUtil.getDateTimeFromString(
+                    gameDataItem.endTime
+                ).uppercase())
                 SharedPrefUtils.setInt(context,SharedPrefUtils.SELECTED_GAME_ID,gameDataItem.gameId)
                 intent = Intent(context, BookingNumberActivity::class.java)
+                context.startActivity(intent)
 
 
             }

@@ -16,5 +16,7 @@ data class BankDetailModel(
     @SerializedName("id")
     val id: Int,
     @SerializedName("upiId")
-    val upiId: String?
+    val upiId: String?,
+    @SerializedName("accountHolderName")
+    val accountHolderName: String?
 )

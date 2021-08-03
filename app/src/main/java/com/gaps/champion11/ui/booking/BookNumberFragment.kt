@@ -55,6 +55,8 @@ class BookNumberFragment : Fragment() {
         _binding = FragmentBookingNumberBinding.inflate(inflater, container, false)
         val root: View = binding.root
         setupListeners()
+        binding.currentSlotTime.text =
+            SharedPrefUtils.getString(context,SharedPrefUtils.SELECTED_GAME_SLOT,null)
         return root
     }
 
@@ -162,9 +164,12 @@ class BookNumberFragment : Fragment() {
                 MessageType.SUCCESS,
                 object : CommandCallbackWithFailure {
                     override fun onSuccess() {
-                        fragmentManager!!.beginTransaction()
-                            .replace(R.id.frame_container, BookingFragment.newInstance())
-                            .commitAllowingStateLoss()
+                        if (fragmentManager!!.backStackEntryCount > 0) {
+                            fragmentManager!!.popBackStack()
+                        }
+//                        fragmentManager!!.beginTransaction()
+//                            .replace(R.id.frame_container, BookingFragment.newInstance())
+//                            .commitAllowingStateLoss()
                         AppUtil.hideAlertDialog()
                     }
                 })
@@ -196,24 +201,33 @@ class BookNumberFragment : Fragment() {
             .subscribe {
                 val alreadyBetAmt= context?.let { it1 -> SharedPrefUtils.getInt(it1,SharedPrefUtils.AMOUNT) }
                 if (alreadyBetAmt != null) {
-                    if(alreadyBetAmt+ binding.amountTextInputEditText.text.toString().toInt()>5000){
-                        context?.let {
-                            AppUtil.showDialogWithCallback(
-                                it,
-                                "Sorry!! You cannot bet more than Rs 5000 on a single number.",
-                                null,
-                                null,
-                                MessageType.ERROR,
-                                object : CommandCallbackWithFailure {
-                                    override fun onSuccess() {
-                                        AppUtil.hideAlertDialog()
-                                    }
-                                })
-                        }
+                    if(binding.amountTextInputEditText.text.toString().equals("")){
+                        AppUtil.onSnackCoordinate(
+                            binding.amountTextInputEditText,
+                            "Please enter an amount to place a bet"
+                        )
                     }
                     else{
-                        fetchLatestWalletAmountFromServer()
+                        if(alreadyBetAmt+ binding.amountTextInputEditText.text.toString().toInt()>5000){
+                            context?.let {
+                                AppUtil.showDialogWithCallback(
+                                    it,
+                                    "Sorry!! You cannot bet more than Rs 5000 on a single number.",
+                                    null,
+                                    null,
+                                    MessageType.ERROR,
+                                    object : CommandCallbackWithFailure {
+                                        override fun onSuccess() {
+                                            AppUtil.hideAlertDialog()
+                                        }
+                                    })
+                            }
+                        }
+                        else{
+                            fetchLatestWalletAmountFromServer()
+                        }
                     }
+
                 }
             }
     }

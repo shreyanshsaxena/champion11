@@ -54,7 +54,8 @@ class AddBankDetailsActivity : BaseNavigationActivity() {
             binding.edtIfscCode.text.toString(),
             "Plot No 3A, Tower 8, Noida",
             bankDetailId,
-            binding.edtupiTxt.text.toString()
+            binding.edtupiTxt.text.toString(),
+            binding.edtAccountHolderName.text.toString()
         )
 
         if(bankDetailsExist&& bankDetailId!=0){
@@ -121,6 +122,7 @@ class AddBankDetailsActivity : BaseNavigationActivity() {
                     binding.edtAccountNumber.setText(response.body()!![0].accountNo)
                     binding.edtupiTxt.setText(response.body()!![0].upiId)
                     binding.edtIfscCode.setText(response.body()!![0].ifsc)
+                    binding.edtAccountHolderName.setText(response.body()!![0].accountHolderName)
                 }
 
             }
