@@ -38,6 +38,7 @@
             android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.bankdetails.AddBankDetailsActivity" />
+        <activity android:name=".ui.GameHistoryActivity" />
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gaps.champion11.HomeScreenActivity
 import com.gaps.champion11.R
 import com.gaps.champion11.model.DrawerListItem
+import com.gaps.champion11.ui.GameHistoryActivity
 import com.gaps.champion11.ui.LoginActivity
 import com.gaps.champion11.ui.PolicyActivity
 import com.gaps.champion11.ui.bankdetails.AddBankDetailsActivity
@@ -60,6 +61,9 @@ class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         when (drawerListItem.name) {
             "Bank Account" -> {
                 intent = Intent(context, AddBankDetailsActivity::class.java)
+            }
+            "My Game History" ->{
+                intent = Intent(context, GameHistoryActivity::class.java)
             }
             "Log Out" -> {
                 SharedPrefUtils.clearAll(context)

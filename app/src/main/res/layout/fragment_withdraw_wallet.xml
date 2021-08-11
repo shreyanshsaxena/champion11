@@ -41,38 +41,38 @@
                     android:textColor="@color/text_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add Money to Wallet"/>
+                    android:text="Withdraw Money from Wallet"/>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/userIDTextInputEditText"
-        style="@style/TextBold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="Enter amount"
-        android:importantForAutofill="no"
-        android:inputType="number"
-        android:maxLength="12"
-        android:paddingEnd="32dp"
-        android:singleLine="true"
-        android:text="Rs 2000"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/text_color"
-        android:textColorHint="@color/text_color"
-        android:textSize="36dp"
-        app:backgroundTint="@android:color/transparent" />
-    <ImageView
-        android:src="@drawable/ic_times_circle"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/userIDTextInputEditText"
+                        style="@style/TextBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:hint="Enter amount"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="12"
+                        android:paddingEnd="32dp"
+                        android:singleLine="true"
+                        android:text="Rs 2000"
+                        android:textColor="@color/black"
+                        android:textColorHighlight="@color/text_color"
+                        android:textColorHint="@color/text_color"
+                        android:textSize="36dp"
+                        app:backgroundTint="@android:color/transparent" />
+                    <ImageView
+                        android:src="@drawable/ic_times_circle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content"/>
 
-</RelativeLayout>
+                </RelativeLayout>
                 <View
                     android:layout_marginBottom="16dp"
                     android:layout_width="match_parent"
@@ -87,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Minimum amount ₹ 10"/>
+
                 <TextView
                     android:layout_marginTop="@dimen/carbon_grid8"
                     android:textSize="14dp"
@@ -95,7 +96,34 @@
                     android:textColor="@color/text_color"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Note: You can add minimum amount of ₹ 10 in your wallet"/>
+                    android:text="Note: You need to provide PAN card details for withdrawal greater than Rs 10000"/>
+                <carbon.widget.EditText
+                    app:carbon_cornerRadius="32dp"
+                    app:carbon_elevation="4dp"
+                    app:carbon_elevationShadowColor="@color/carbon_blueGrey_500"
+                    android:id="@+id/otpTxt"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/border_edit_text"
+                    android:drawableEnd="@drawable/ic_passport"
+                    android:shadowColor="@color/text_box_fill"
+                    android:hint="Enter PAN Card"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color"
+                    android:textColorHighlight="@color/text_color"
+                    android:textColorHint="@color/text_color"
+                    android:textSize="20dp"
+                   />
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/bookNow"
                     style="@style/MaterialButtonStyleGreen"
@@ -104,12 +132,12 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="16dp"
                     android:clickable="true"
                     android:drawableEnd="@drawable/ic_arrow_right"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="    Add Money"
+                    android:text="    Withdraw"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:visibility="visible"

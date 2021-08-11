@@ -79,6 +79,9 @@ open class BaseNavigationActivity : BaseActivity(),
         val drawerListItem = DrawerListItem("Bank Account", R.drawable.ic_hotel, true)
 
         drawerListItems.add(drawerListItem)
+        val drawerListItem5 = DrawerListItem("My Game History", R.drawable.ic_hotel, true)
+
+        drawerListItems.add(drawerListItem5)
         val drawerListItem1 = DrawerListItem("About Us", R.drawable.ic_user_alt, true)
         drawerListItems.add(drawerListItem1)
         val drawerListItem2 = DrawerListItem("Privacy Policy", R.drawable.ic_edit, true)

@@ -1,4 +1,4 @@
-<LinearLayout android:layout_width="match_parent"
+<androidx.appcompat.widget.LinearLayoutCompat android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -20,29 +20,29 @@
         app:cardPreventCornerOverlap="false"
         app:cardElevation="6dp"
         tools:cardElevation="6dp">
-<LinearLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:padding="@dimen/margin_8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_8dp"
         android:orientation="horizontal">
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_weight="0.2"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/gameDate"
                 android:textSize="16dp"
                 android:textColor="@color/text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="14 July 21"/>
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/gameSlotTime"
                 android:textSize="16dp"
                 style="@style/TextBold"
@@ -50,20 +50,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10:59 PM to 10:50 AM"/>
-        </LinearLayout>
-        <LinearLayout
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="0.8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:textSize="16dp"
                 android:textColor="@color/text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Patti No"/>
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pattiNo"
                 android:textSize="14dp"
                 style="@style/TextSemiBold"
@@ -71,26 +71,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="453"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:padding="@dimen/margin_8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_8dp"
         android:orientation="horizontal">
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_weight="0.5"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:textSize="16dp"
                 android:textColor="@color/text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Bet Amount"/>
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/betAmt"
                 android:textSize="16dp"
                 style="@style/TextBold"
@@ -98,8 +98,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs 5000"/>
-        </LinearLayout>
-        <LinearLayout
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="0.5"
@@ -121,12 +121,12 @@
                 android:textSize="12dp"
                 android:visibility="visible"
                 app:cornerRadius="32dp" />
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
     </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

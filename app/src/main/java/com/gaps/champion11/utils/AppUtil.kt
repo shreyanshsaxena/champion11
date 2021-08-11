@@ -1,5 +1,6 @@
 package com.gaps.champion11.utils
 
+import GameDetailAdapter
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -25,10 +26,15 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat.getColor
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gaps.champion11.R
 import com.gaps.champion11.enum.MessageType
+import com.gaps.champion11.model.NumberDetail
+import com.gaps.champion11.model.UserStatsResponse
+import com.gaps.champion11.ui.adapter.GameHistoryAdapter
+import com.gaps.champion11.ui.adapter.NumberListAdapter
 import com.gaps.champion11.ui.adapter.SpinnerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
@@ -42,6 +48,8 @@ class AppUtil {
 
     companion object {
         private var gdprDialog: AlertDialog?=null
+        private var gameDetailDialog: AlertDialog?=null
+
         var alertMessage: String? = null
 
         private lateinit var mBottomSheetDialog: Any
@@ -78,6 +86,17 @@ class AppUtil {
                 e.printStackTrace()
             }
             return DateTime(d).toString("hh:mm a")
+        }
+        fun getDateFromString(s: String?): String {
+            val pattern = "yyyy-MM-dd'T'HH:mm:ss"
+            val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
+            var d: Date? = null
+            try {
+                d = simpleDateFormat.parse(s)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return DateTime(d).toString("dd MMM yyyy")
         }
         fun showBottomSheetDialog(
             context: Context,
@@ -216,6 +235,60 @@ class AppUtil {
 
             alertDialog!!.window!!.attributes = layoutParams
         }
+
+        fun showGameDetailDialogWithCallback(context: Context,numberList:List<NumberDetail>,gameDataItem:UserStatsResponse) {
+            if (gameDetailDialog != null && gameDetailDialog!!.isShowing()) {
+                return
+            }
+            val rootView = (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
+            val builder = AlertDialog.Builder(context, R.style.full_screen_dialog)
+            val inflater = LayoutInflater.from(context)
+            @SuppressLint("InflateParams") val dialogView: View =
+                inflater.inflate(R.layout.game_bet_detail_dialog, null)
+            builder.setView(dialogView)
+            builder.setCancelable(true)
+            val numberListRecycler = dialogView.findViewById<RecyclerView>(R.id.numberList)
+
+            val gridLayoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
+            numberListRecycler.layoutManager = gridLayoutManager
+
+            val numberListAdapter = GameDetailAdapter(numberList,gameDataItem, context)
+            numberListRecycler.isNestedScrollingEnabled = false
+            numberListRecycler.adapter = numberListAdapter
+
+            gameDetailDialog = builder.create()
+            gameDetailDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            if (gameDetailDialog!!.window != null) {
+                gameDetailDialog!!.window?.setLayout(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
+                gameDetailDialog!!.window!!.setBackgroundDrawableResource(android.R.color.white)
+            }
+            if (gameDetailDialog!!.window != null) {
+                gameDetailDialog!!.window
+                    ?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                gameDetailDialog!!.window
+                    ?.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+            }
+//            btnOK.setOnClickListener { view: View? ->
+//                hideTncAlertDialog()
+//                commandCallback.onSuccess()
+//            }
+//            buttonCancel.setOnClickListener { v: View? ->
+//                hideTncAlertDialog()
+//                commandCallback.onFailure()
+//            }
+            showGameDetailAlertDialog()
+            val layoutParams = WindowManager.LayoutParams()
+            layoutParams.copyFrom(gameDetailDialog!!.window!!.attributes)
+            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
+
+            gameDetailDialog!!.window!!.attributes = layoutParams
+
+        }
+
         fun hideAlertDialog() {
             if (alertDialog != null && alertDialog!!.isShowing) {
                 alertDialog!!.dismiss()
@@ -241,6 +314,16 @@ class AppUtil {
         private fun showTncAlertDialog() {
             if (gdprDialog != null && !gdprDialog!!.isShowing) {
                 gdprDialog!!.show()
+            }
+        }
+        private fun showGameDetailAlertDialog() {
+            if (gameDetailDialog != null && !gameDetailDialog!!.isShowing) {
+                gameDetailDialog!!.show()
+            }
+        }
+        private fun hideGameDetailAlertDialog() {
+            if (gameDetailDialog != null && gameDetailDialog!!.isShowing) {
+                gameDetailDialog!!.hide()
             }
         }
         fun hideKeyboard(ctx: Context?) {
