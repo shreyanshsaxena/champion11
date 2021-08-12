@@ -27,7 +27,6 @@ class GameDetailAdapter(private val numberList: List<NumberDetail>,val userStats
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        // display the current animal
         holder.numberTxt.setTextColor(Color.WHITE)
         holder.betTxt.text= MessageFormat.format("₹ {0}",numberList[position].betAmount)
         if (numberList[position].number==userStatsResponse.correctOption) {

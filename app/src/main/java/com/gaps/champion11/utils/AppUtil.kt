@@ -39,6 +39,7 @@ import com.gaps.champion11.ui.adapter.SpinnerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import org.joda.time.DateTime
+import java.text.MessageFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,8 +48,8 @@ import java.util.*
 class AppUtil {
 
     companion object {
-        private var gdprDialog: AlertDialog?=null
-        private var gameDetailDialog: AlertDialog?=null
+        private var gdprDialog: AlertDialog? = null
+        private var gameDetailDialog: AlertDialog? = null
 
         var alertMessage: String? = null
 
@@ -76,6 +77,7 @@ class AppUtil {
             }
             textview.text = builder
         }
+
         fun getDateTimeFromString(s: String?): String {
             val pattern = "yyyy-MM-dd'T'HH:mm:ss"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
@@ -87,6 +89,7 @@ class AppUtil {
             }
             return DateTime(d).toString("hh:mm a")
         }
+
         fun getDateFromString(s: String?): String {
             val pattern = "yyyy-MM-dd'T'HH:mm:ss"
             val simpleDateFormat = SimpleDateFormat(pattern, Locale.US)
@@ -98,6 +101,7 @@ class AppUtil {
             }
             return DateTime(d).toString("dd MMM yyyy")
         }
+
         fun showBottomSheetDialog(
             context: Context,
             locationList: List<String>,
@@ -119,8 +123,8 @@ class AppUtil {
 
         }
 
-        fun getGenderValueString(genderVal: Int?):String{
-            if(genderVal==1)
+        fun getGenderValueString(genderVal: Int?): String {
+            if (genderVal == 1)
                 return "Male"
             else
                 return "Female"
@@ -131,7 +135,7 @@ class AppUtil {
             message: String,
             customMessage: String?,
             @DrawableRes resourceId: Int?,
-            msgType:MessageType,
+            msgType: MessageType,
             commandCallback: CommandCallbackWithFailure
         ) {
             if (alertDialog != null && alertDialog!!.isShowing) {
@@ -163,7 +167,7 @@ class AppUtil {
                 alertDialog!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 alertDialog!!.window!!.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
             }
-            messageType.setTextColor(getColor(context,R.color.colorPrimary))
+            messageType.setTextColor(getColor(context, R.color.colorPrimary))
             when (msgType) {
                 MessageType.INFO -> {
                     messageType.visibility = View.GONE
@@ -179,13 +183,13 @@ class AppUtil {
                 }
                 MessageType.ERROR -> {
                     messageType.text = context.getResources().getString(R.string.error)
-                    messageType.setTextColor(getColor(context,R.color.colorPrimary))
+                    messageType.setTextColor(getColor(context, R.color.colorPrimary))
                     msg_txt_icon.setImageDrawable(context.getDrawable(R.drawable.ic_error_svg))
                     buttonCancel.visibility = View.GONE
                 }
                 MessageType.SUCCESS -> {
                     messageType.text = context.getResources().getString(R.string.success)
-                    messageType.setTextColor(getColor(context,R.color.colorGreen))
+                    messageType.setTextColor(getColor(context, R.color.colorGreen))
                     msg_txt_icon.setImageDrawable(context.getDrawable(R.drawable.ic_success))
                     buttonCancel.visibility = View.GONE
                 }
@@ -230,17 +234,22 @@ class AppUtil {
             showAlertDialog()
             val layoutParams = WindowManager.LayoutParams()
             layoutParams.copyFrom(alertDialog!!.window!!.attributes)
-            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.width = (getDeviceMetrics(context).widthPixels * 0.90).toInt()
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
 
             alertDialog!!.window!!.attributes = layoutParams
         }
 
-        fun showGameDetailDialogWithCallback(context: Context,numberList:List<NumberDetail>,gameDataItem:UserStatsResponse) {
+        fun showGameDetailDialogWithCallback(
+            context: Context,
+            numberList: List<NumberDetail>,
+            gameDataItem: UserStatsResponse
+        ) {
             if (gameDetailDialog != null && gameDetailDialog!!.isShowing()) {
                 return
             }
-            val rootView = (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
+            val rootView =
+                (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
             val builder = AlertDialog.Builder(context, R.style.full_screen_dialog)
             val inflater = LayoutInflater.from(context)
             @SuppressLint("InflateParams") val dialogView: View =
@@ -248,11 +257,29 @@ class AppUtil {
             builder.setView(dialogView)
             builder.setCancelable(true)
             val numberListRecycler = dialogView.findViewById<RecyclerView>(R.id.numberList)
+            val gameDate = dialogView.findViewById<TextView>(R.id.gameDate)
+            val gameSlotTime = dialogView.findViewById<TextView>(R.id.gameSlotTime)
+            val betAmount = dialogView.findViewById<TextView>(R.id.betAmt)
+            val winLoseAmount = dialogView.findViewById<TextView>(R.id.winLoseAmt)
+            val winLoseAmt = gameDataItem.resultAmount - gameDataItem.userGameAmount
+            val prefix:String
+            if (winLoseAmt > 0) {
+                winLoseAmount.setTextColor(context.resources.getColor(R.color.colorGreen))
 
+            } else {
+                winLoseAmount.setTextColor(context.resources.getColor(R.color.colorPrimary))
+            }
+            gameSlotTime.text =
+                getDateTimeFromString(gameDataItem.startTime).uppercase() + " to " + AppUtil.getDateTimeFromString(
+                    gameDataItem.endTime
+                ).uppercase()
+            gameDate.text = getDateFromString(gameDataItem.startTime)
+            betAmount.text = gameDataItem.userGameAmount.toString()
+            winLoseAmount.text=MessageFormat.format("{0}",winLoseAmt)
             val gridLayoutManager = GridLayoutManager(context, 3, RecyclerView.VERTICAL, false)
             numberListRecycler.layoutManager = gridLayoutManager
 
-            val numberListAdapter = GameDetailAdapter(numberList,gameDataItem, context)
+            val numberListAdapter = GameDetailAdapter(numberList, gameDataItem, context)
             numberListRecycler.isNestedScrollingEnabled = false
             numberListRecycler.adapter = numberListAdapter
 
@@ -282,7 +309,7 @@ class AppUtil {
             showGameDetailAlertDialog()
             val layoutParams = WindowManager.LayoutParams()
             layoutParams.copyFrom(gameDetailDialog!!.window!!.attributes)
-            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.width = (getDeviceMetrics(context).widthPixels * 0.90).toInt()
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
 
             gameDetailDialog!!.window!!.attributes = layoutParams
@@ -294,11 +321,13 @@ class AppUtil {
                 alertDialog!!.dismiss()
             }
         }
+
         fun hideTncAlertDialog() {
             if (gdprDialog != null && gdprDialog!!.isShowing) {
                 gdprDialog!!.dismiss()
             }
         }
+
         fun getDeviceMetrics(context: Context): DisplayMetrics {
             val metrics = DisplayMetrics()
             val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -306,26 +335,31 @@ class AppUtil {
             display.getMetrics(metrics)
             return metrics
         }
+
         private fun showAlertDialog() {
             if (alertDialog != null && !alertDialog!!.isShowing) {
                 alertDialog!!.show()
             }
         }
+
         private fun showTncAlertDialog() {
             if (gdprDialog != null && !gdprDialog!!.isShowing) {
                 gdprDialog!!.show()
             }
         }
+
         private fun showGameDetailAlertDialog() {
             if (gameDetailDialog != null && !gameDetailDialog!!.isShowing) {
                 gameDetailDialog!!.show()
             }
         }
+
         private fun hideGameDetailAlertDialog() {
             if (gameDetailDialog != null && gameDetailDialog!!.isShowing) {
                 gameDetailDialog!!.hide()
             }
         }
+
         fun hideKeyboard(ctx: Context?) {
             if (ctx == null) return
             val inputManager = ctx
@@ -344,7 +378,8 @@ class AppUtil {
             )
             snackbar.setActionTextColor(Color.RED)
             val snackbarView = snackbar.view
-            val params: CoordinatorLayout.LayoutParams = snackbarView.layoutParams as CoordinatorLayout.LayoutParams
+            val params: CoordinatorLayout.LayoutParams =
+                snackbarView.layoutParams as CoordinatorLayout.LayoutParams
             params.setMargins(
                 0,
                 0,
@@ -368,7 +403,8 @@ class AppUtil {
             )
             snackbar.setActionTextColor(Color.RED)
             val snackbarView = snackbar.view
-            val params: FrameLayout.LayoutParams = snackbarView.layoutParams as FrameLayout.LayoutParams
+            val params: FrameLayout.LayoutParams =
+                snackbarView.layoutParams as FrameLayout.LayoutParams
             params.setMargins(
                 0,
                 0,
@@ -383,11 +419,16 @@ class AppUtil {
             textView.textSize = 16f
             snackbar.show()
         }
-        fun showTncDialogWithCallback(context: Context, commandCallback: CommandCallbackWithFailure) {
+
+        fun showTncDialogWithCallback(
+            context: Context,
+            commandCallback: CommandCallbackWithFailure
+        ) {
             if (gdprDialog != null && gdprDialog!!.isShowing()) {
                 return
             }
-            val rootView = (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
+            val rootView =
+                (context as Activity).window.decorView.findViewById<View>(android.R.id.content)
             val builder = AlertDialog.Builder(context, R.style.full_screen_dialog)
             val inflater = LayoutInflater.from(context)
             @SuppressLint("InflateParams") val dialogView: View =
@@ -405,7 +446,8 @@ class AppUtil {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT
                 )
-                gdprDialog!!.getWindow()!!.setBackgroundDrawableResource(android.R.color.transparent)
+                gdprDialog!!.getWindow()!!
+                    .setBackgroundDrawableResource(android.R.color.transparent)
             }
             if (gdprDialog!!.getWindow() != null) {
                 gdprDialog!!.getWindow()
@@ -424,7 +466,7 @@ class AppUtil {
             showTncAlertDialog()
             val layoutParams = WindowManager.LayoutParams()
             layoutParams.copyFrom(gdprDialog!!.window!!.attributes)
-            layoutParams.width = (getDeviceMetrics(context).widthPixels*0.90).toInt()
+            layoutParams.width = (getDeviceMetrics(context).widthPixels * 0.90).toInt()
             layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
 
             gdprDialog!!.window!!.attributes = layoutParams
@@ -439,10 +481,6 @@ class AppUtil {
         }
 
     }
-
-
-
-
 
 
 }
